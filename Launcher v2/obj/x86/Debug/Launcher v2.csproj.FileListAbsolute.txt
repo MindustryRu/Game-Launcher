@@ -1,0 +1,24 @@
+F:\Launcher\LauncherTop\Launcher v2\bin\x86\Debug\Launcher v2.exe
+F:\Launcher\LauncherTop\Launcher v2\bin\x86\Debug\Launcher v2.pdb
+F:\Launcher\LauncherTop\Launcher v2\bin\x86\Debug\Awesomium.Core.dll
+F:\Launcher\LauncherTop\Launcher v2\bin\x86\Debug\Awesomium.Windows.Forms.dll
+F:\Launcher\LauncherTop\Launcher v2\bin\x86\Debug\Ionic.Zip.dll
+F:\Launcher\LauncherTop\Launcher v2\bin\x86\Debug\Awesomium.Core.xml
+F:\Launcher\LauncherTop\Launcher v2\bin\x86\Debug\Awesomium.Windows.Forms.xml
+F:\Launcher\LauncherTop\Launcher v2\bin\x86\Debug\awesomium.dll
+F:\Launcher\LauncherTop\Launcher v2\bin\x86\Debug\icudt.dll
+F:\Launcher\LauncherTop\Launcher v2\bin\x86\Debug\avcodec-53.dll
+F:\Launcher\LauncherTop\Launcher v2\bin\x86\Debug\avformat-53.dll
+F:\Launcher\LauncherTop\Launcher v2\bin\x86\Debug\avutil-51.dll
+F:\Launcher\LauncherTop\Launcher v2\bin\x86\Debug\libEGL.dll
+F:\Launcher\LauncherTop\Launcher v2\bin\x86\Debug\libGLESv2.dll
+F:\Launcher\LauncherTop\Launcher v2\bin\x86\Debug\awesomium_process
+F:\Launcher\LauncherTop\Launcher v2\bin\x86\Debug\inspector.pak
+F:\Launcher\LauncherTop\Launcher v2\bin\x86\Debug\xinput9_1_0.dll
+F:\Launcher\LauncherTop\Launcher v2\bin\x86\Debug\pdf_js.pak
+F:\Launcher\LauncherTop\Launcher v2\obj\x86\Debug\Launcher_v2.Form1.resources
+F:\Launcher\LauncherTop\Launcher v2\obj\x86\Debug\Launcher_v2.Properties.Resources.resources
+F:\Launcher\LauncherTop\Launcher v2\obj\x86\Debug\Launcher v2.csproj.GenerateResource.Cache
+F:\Launcher\LauncherTop\Launcher v2\obj\x86\Debug\Launcher v2.exe
+F:\Launcher\LauncherTop\Launcher v2\obj\x86\Debug\Launcher v2.pdb
+F:\Launcher\LauncherTop\Launcher v2\obj\x86\Debug\Launcher v2.csprojResolveAssemblyReference.cache
