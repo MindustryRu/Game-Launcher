@@ -180,11 +180,11 @@
             // 
             this.webBrowser1.AllowWebBrowserDrop = false;
             this.webBrowser1.IsWebBrowserContextMenuEnabled = false;
-            this.webBrowser1.Location = new System.Drawing.Point(12, 34);
+            this.webBrowser1.Location = new System.Drawing.Point(107, 34);
             this.webBrowser1.Name = "webBrowser1";
             this.webBrowser1.ScriptErrorsSuppressed = true;
             this.webBrowser1.ScrollBarsEnabled = false;
-            this.webBrowser1.Size = new System.Drawing.Size(456, 226);
+            this.webBrowser1.Size = new System.Drawing.Size(361, 226);
             this.webBrowser1.TabIndex = 0;
             this.webBrowser1.TabStop = false;
             this.webBrowser1.Url = new System.Uri("http://update.mindustry.ru/web/", System.UriKind.Absolute);
@@ -205,7 +205,7 @@
             this.roundButton3.ButtonRoundRadius = 20;
             this.roundButton3.Cursor = System.Windows.Forms.Cursors.Hand;
             this.roundButton3.Font = new System.Drawing.Font("Impact", 9.75F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.roundButton3.Location = new System.Drawing.Point(93, 310);
+            this.roundButton3.Location = new System.Drawing.Point(12, 84);
             this.roundButton3.Name = "roundButton3";
             this.roundButton3.Size = new System.Drawing.Size(75, 23);
             this.roundButton3.TabIndex = 36;
@@ -226,7 +226,7 @@
             this.roundButton2.ButtonRoundRadius = 20;
             this.roundButton2.Cursor = System.Windows.Forms.Cursors.Hand;
             this.roundButton2.Font = new System.Drawing.Font("Impact", 9.75F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.roundButton2.Location = new System.Drawing.Point(12, 310);
+            this.roundButton2.Location = new System.Drawing.Point(12, 113);
             this.roundButton2.Name = "roundButton2";
             this.roundButton2.Size = new System.Drawing.Size(75, 23);
             this.roundButton2.TabIndex = 35;
@@ -247,7 +247,7 @@
             this.roundButton1.ButtonRoundRadius = 20;
             this.roundButton1.Cursor = System.Windows.Forms.Cursors.Hand;
             this.roundButton1.Font = new System.Drawing.Font("Impact", 9.75F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.roundButton1.Location = new System.Drawing.Point(393, 310);
+            this.roundButton1.Location = new System.Drawing.Point(12, 55);
             this.roundButton1.Name = "roundButton1";
             this.roundButton1.Size = new System.Drawing.Size(75, 23);
             this.roundButton1.TabIndex = 34;
@@ -259,8 +259,8 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.Black;
-            this.BackgroundImage = global::Launcher_v2.Properties.Resources._2;
-            this.ClientSize = new System.Drawing.Size(480, 337);
+            this.BackgroundImage = global::Launcher_v2.Properties.Resources.Bg_Launcher;
+            this.ClientSize = new System.Drawing.Size(480, 310);
             this.Controls.Add(this.webBrowser1);
             this.Controls.Add(this.pictureBox4);
             this.Controls.Add(this.button1);

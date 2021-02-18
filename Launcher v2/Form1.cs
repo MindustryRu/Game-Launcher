@@ -82,7 +82,7 @@ namespace Launcher_v2
 
                 using (StreamWriter sw = new StreamWriter("version"))
                 {
-                    sw.Write("1");
+                    sw.Write("125");
                 }
             }
             //checks client version
@@ -206,8 +206,8 @@ namespace Launcher_v2
                 MessageBox.Show("Клиент уже запущен!");
             }
             else {
-                    string dirName1 = (Application.StartupPath + "/Mindustry.ru/Mindustry.exe");
-                    string dirName = (Application.StartupPath + "/Mindustry.ru/");
+                    string dirName1 = (Application.StartupPath + "/Mindustry.ru//Mindustry.exe");
+                    string dirName = (Application.StartupPath + "/Mindustry.ru//");
                     if (Directory.Exists(dirName) && File.Exists(dirName1) == true)
                     {
                         Process.Start(Application.StartupPath + "\\Mindustry.ru\\Mindustry.exe");
@@ -278,7 +278,7 @@ namespace Launcher_v2
                 }
                 else
                 {
-                    MessageBox.Show("Вам нужно запустить игру хотя-бы раз что-бы создалась папка модов.");
+                    MessageBox.Show("У вас не создана папка с модификациями, повторите попытку позже.");
                 }
             }
         }
@@ -293,7 +293,7 @@ namespace Launcher_v2
                 }
                 else
                 {
-                    MessageBox.Show("У вас не создана папка с картами.");
+                    MessageBox.Show("У вас не создана папка с картами, повторите попытку позже.");
                 }
             }
         }
