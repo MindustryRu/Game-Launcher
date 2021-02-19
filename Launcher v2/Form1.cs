@@ -16,14 +16,14 @@ namespace Launcher_v2
 
         public Form1()
         {
-                InitializeComponent();
-                //Download progress
-                backgroundWorker1.RunWorkerAsync();
-                roundButton1.Enabled = false;
-                button5.Enabled = false;
-                
-                this.FormBorderStyle = FormBorderStyle.None;
-                this.MouseDown += new MouseEventHandler(Form1_MouseDown);
+            InitializeComponent();
+            //Download progress
+            backgroundWorker1.RunWorkerAsync();
+            roundButton1.Enabled = false;
+            button5.Enabled = false;
+
+            this.FormBorderStyle = FormBorderStyle.None;
+            this.MouseDown += new MouseEventHandler(Form1_MouseDown);
         }
 
         //Makes the form dragable
@@ -60,7 +60,7 @@ namespace Launcher_v2
                 return false;
             }
         }
-        
+
 
         //background Worker: Handles downloading the updates
         private void backgroundWorker1_DoWork(object sender, DoWorkEventArgs e)
@@ -73,7 +73,7 @@ namespace Launcher_v2
 
             //Make sure version file exists
             FileStream fs = null;
-            if(!File.Exists("version"))
+            if (!File.Exists("version"))
             {
                 using (fs = File.Create("version"))
                 {
@@ -95,7 +95,7 @@ namespace Launcher_v2
 
 
             //server's list of updates
-            XDocument serverXml = XDocument.Load(@Server+"Updates.xml");
+            XDocument serverXml = XDocument.Load(@Server + "Updates.xml");
 
             //The Update Process
             foreach (XElement update in serverXml.Descendants("update"))
@@ -161,7 +161,7 @@ namespace Launcher_v2
 
                     //download new version file
                     WebClient webClient = new WebClient();
-                    webClient.DownloadFile(Server+"version.txt", @Root+"version");
+                    webClient.DownloadFile(Server + "version.txt", @Root + "version");
 
                     //Delete Zip File
                     deleteFile(file);
@@ -180,9 +180,10 @@ namespace Launcher_v2
         {
             roundButton1.Enabled = true;
             button5.Enabled = true;
-            
+
             this.downloadLbl.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
             downloadLbl.Text = "Используется актуальная версия игры!";
+
         }
 
         public bool IsProcessOpen(string name)
@@ -197,30 +198,6 @@ namespace Launcher_v2
 
             }
             return false;
-        }
-        
-        private void roundButton1_Click(object sender, EventArgs e)
-        {
-            if (IsProcessOpen("Mindustry"))
-            {
-                MessageBox.Show("Клиент уже запущен!");
-            }
-            else {
-                    string dirName1 = (Application.StartupPath + "/Mindustry.ru//Mindustry.exe");
-                    string dirName = (Application.StartupPath + "/Mindustry.ru//");
-                    if (Directory.Exists(dirName) && File.Exists(dirName1) == true)
-                    {
-                        Process.Start(Application.StartupPath + "\\Mindustry.ru\\Mindustry.exe");
-                        Application.Exit();
-                }
-                    else
-                    {
-                    File.Delete(Application.StartupPath + "/version");
-                    MessageBox.Show("Лаунчер будет перезагружен!\n\nОбнаружена ошибка расположения клиента", "Ошибка!");
-                    Process.Start(Application.StartupPath + "/Updater.exe");
-                    Application.Exit();
-                }
-            }
         }
 
         private void patchNotes_DocumentCompleted(object sender, WebBrowserDocumentCompletedEventArgs e)
@@ -238,9 +215,71 @@ namespace Launcher_v2
             this.WindowState = FormWindowState.Minimized;
         }
 
-        private void roundButton3_Click(object sender, EventArgs e)
+        private void Form1_Load(object sender, EventArgs e)
         {
-            DialogResult dialogResult = MessageBox.Show("Вы хотите перейти на сайт?", "Внимание!", MessageBoxButtons.YesNo);
+
+            ToolTip t = new ToolTip();
+            t.SetToolTip(button6, "Откроет папку с модификациями игры");
+            t.SetToolTip(button7, "Откроет папку с картами игры");
+            t.SetToolTip(button4, "Функция ремонта и восстановления клиента в исходное состояние");
+            t.SetToolTip(button1, "Свернуть лаунчер");
+            t.SetToolTip(button5, "Закрыть лаунчер");
+            t.SetToolTip(label2, "Версия игры установленная у вас.");
+            label1.Text = System.IO.File.ReadAllText(Application.StartupPath + "/version");
+        }
+
+        private void roundButton1_Click(object sender, EventArgs e)
+        {
+            if (IsProcessOpen("Mindustry"))
+            {
+                MessageBox.Show("Клиент уже запущен!");
+            }
+            else
+            {
+                string dirName1 = (Application.StartupPath + "/Mindustry.ru//Mindustry.exe");
+                string dirName = (Application.StartupPath + "/Mindustry.ru//");
+                if (Directory.Exists(dirName) && File.Exists(dirName1) == true)
+                {
+                    Process.Start(Application.StartupPath + "\\Mindustry.ru\\Mindustry.exe");
+                    Application.Exit();
+                }
+                else
+                {
+                    File.Delete(Application.StartupPath + "/version");
+                    MessageBox.Show("Лаунчер будет перезагружен!\n\nОбнаружена ошибка расположения клиента", "Ошибка!");
+                    Process.Start(Application.StartupPath + "/Updater.exe");
+                    Application.Exit();
+                }
+            }
+        }
+
+        private void webBrowser1_DocumentCompleted(object sender, WebBrowserDocumentCompletedEventArgs e)
+        {
+
+        }
+
+        private void pictureBox2_Click_1(object sender, EventArgs e)
+        {
+
+        }
+
+        private void button2_Click(object sender, EventArgs e)
+        {
+            DialogResult dialogResult = MessageBox.Show("Вы хотите перейти в Discord Mindustry.ru?", "Подтвердите действие!", MessageBoxButtons.YesNo);
+            if (dialogResult == DialogResult.Yes)
+            {
+                System.Diagnostics.Process.Start("https://discord.mindustry.ru/");
+            }
+            else if (dialogResult == DialogResult.No)
+            {
+                //do something else
+            }
+
+        }
+
+        private void button3_Click(object sender, EventArgs e)
+        {
+            DialogResult dialogResult = MessageBox.Show("Вы хотите перейти перейти на сайт?", "Подтвердите действие!", MessageBoxButtons.YesNo);
             if (dialogResult == DialogResult.Yes)
             {
                 System.Diagnostics.Process.Start("https://discord.mindustry.ru/");
@@ -251,23 +290,22 @@ namespace Launcher_v2
             }
         }
 
-        private void roundButton2_Click(object sender, EventArgs e)
+        private void button7_Click(object sender, EventArgs e)
         {
-            System.Diagnostics.Process.Start("https://mindustry.ru/");
+            {
+                string dirName = Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData) + "/Mindustry/maps/";
+                if (Directory.Exists(dirName))
+                {
+                    Process.Start(dirName);
+                }
+                else
+                {
+                    MessageBox.Show("У вас не создана папка с картами, повторите попытку позже.");
+                }
+            }
         }
 
-        private void Form1_Load(object sender, EventArgs e)
-        {
-
-                ToolTip t = new ToolTip();
-                t.SetToolTip(pictureBox2, "Откроет папку с модификациями игры");
-                t.SetToolTip(pictureBox3, "Откроет папку с картами игры");
-                t.SetToolTip(pictureBox4, "Функция ремонта и восстановления клиента в исходное состояние");
-                t.SetToolTip(button1, "Свернуть лаунчер");
-                t.SetToolTip(button5, "Закрыть лаунчер");
-        }
-
-        private void pictureBox2_Click(object sender, EventArgs e)
+        private void button6_Click(object sender, EventArgs e)
         {
 
             {
@@ -283,22 +321,7 @@ namespace Launcher_v2
             }
         }
 
-        private void pictureBox3_Click(object sender, EventArgs e)
-        {
-            {
-                string dirName = Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData) + "/Mindustry/maps/";
-                if (Directory.Exists(dirName))
-                {
-                    Process.Start(dirName);
-                }
-                else
-                {
-                    MessageBox.Show("У вас не создана папка с картами, повторите попытку позже.");
-                }
-            }
-        }
-
-        private void pictureBox4_Click(object sender, EventArgs e)
+        private void button4_Click(object sender, EventArgs e)
         {
             DialogResult dialogResult = MessageBox.Show("Вы запустили средство восстановления клиента\n\nВы уверены что хотите заново переустановить клиент?", "Внимание!", MessageBoxButtons.YesNo);
             if (dialogResult == DialogResult.Yes)
@@ -313,9 +336,9 @@ namespace Launcher_v2
             }
         }
 
-        private void webBrowser1_DocumentCompleted(object sender, WebBrowserDocumentCompletedEventArgs e)
+        private void label1_Click(object sender, EventArgs e)
         {
-            
+
         }
     }
 }

@@ -90,6 +90,7 @@
     <Reference Include="System.Core">
       <EmbedInteropTypes>False</EmbedInteropTypes>
     </Reference>
+    <Reference Include="System.Messaging" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions">
       <EmbedInteropTypes>False</EmbedInteropTypes>
@@ -116,6 +117,11 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
     <Compile Include="RoundButton.cs">
       <SubType>Component</SubType>
     </Compile>
@@ -124,14 +130,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
-      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
       <SubType>Designer</SubType>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
-    <Compile Include="Properties\Resources.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DependentUpon>Resources.resx</DependentUpon>
-      <DesignTime>True</DesignTime>
-    </Compile>
     <None Include="App.config">
       <SubType>Designer</SubType>
     </None>
@@ -150,26 +151,21 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="favicon.ico" />
-    <Content Include="favicon1.ico" />
     <Content Include="Ionic.Zip.dll" />
-    <None Include="Resources\Bg_Launcher.png" />
-    <None Include="Resources\bg.jpg" />
-    <None Include="Resources\2.jpg" />
-    <None Include="Resources\1.jpg" />
-    <None Include="Resources\background3.jpg" />
-    <None Include="Resources\setting.png" />
-    <None Include="Resources\minimize2.png" />
-    <None Include="Resources\folder.jpg" />
-    <None Include="Resources\maps.png" />
-    <None Include="Resources\button2.png" />
-    <None Include="Resources\button.png" />
-    <None Include="Resources\backmind.jpg" />
-    <None Include="Resources\background.jpg" />
-    <None Include="Resources\close1.png" />
     <None Include="Resources\close2.png" />
-    <None Include="Resources\logo.png" />
-    <None Include="Resources\minimize1.png" />
-    <None Include="Resources\background.png" />
+    <None Include="Resources\minimize2.png" />
+    <None Include="Resources\re.png" />
+    <None Include="Resources\modifcation.png" />
+    <None Include="Resources\maps.png" />
+    <None Include="Resources\discord.png" />
+    <None Include="Resources\site.png" />
+    <None Include="Resources\Bg_Main.jpg" />
+    <None Include="Resources\logo1.png" />
+    <None Include="Resources\logo2.png" />
+    <None Include="Resources\Bg_Menu.png" />
+    <None Include="Resources\maps1.png" />
+    <None Include="Resources\setting.png" />
+    <None Include="Resources\logo_old.png" />
   </ItemGroup>
   <ItemGroup>
     <WCFMetadata Include="Service References\" />
