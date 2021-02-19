@@ -210,6 +210,7 @@ namespace Launcher_v2
                 label3.Visible = true;
                 progressBar1.Value++;
                 button8.Enabled = false;
+                button4.Enabled = false;
 
             }
         }
