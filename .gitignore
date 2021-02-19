@@ -1,2 +1,3 @@
-/obj/
-/bin/
+$GIT_DIR/obj/
+$GIT_DIR/bin/
+$GIT_DIR/.vs/
