@@ -259,7 +259,7 @@ namespace Launcher_v2
             DialogResult dialogResult = MessageBox.Show("Вы хотите перейти в Discord Mindustry.ru?", "Подтвердите действие!", MessageBoxButtons.YesNo);
             if (dialogResult == DialogResult.Yes)
             {
-                System.Diagnostics.Process.Start("https://discord.mindustry.ru/");
+                System.Diagnostics.Process.Start("https://ds.mindustry.ru/");
             }
             else if (dialogResult == DialogResult.No)
             {
@@ -273,7 +273,7 @@ namespace Launcher_v2
             DialogResult dialogResult = MessageBox.Show("Вы хотите перейти перейти на сайт?", "Подтвердите действие!", MessageBoxButtons.YesNo);
             if (dialogResult == DialogResult.Yes)
             {
-                System.Diagnostics.Process.Start("https://discord.mindustry.ru/");
+                System.Diagnostics.Process.Start("https://mindustry.ru/");
             }
             else if (dialogResult == DialogResult.No)
             {
