@@ -114,7 +114,7 @@
             this.webBrowser1.Size = new System.Drawing.Size(323, 226);
             this.webBrowser1.TabIndex = 0;
             this.webBrowser1.TabStop = false;
-            this.webBrowser1.Url = new System.Uri("http://127.0.0.1/", System.UriKind.Absolute);
+            this.webBrowser1.Url = new System.Uri("http://update.mindustry.ru/web/", System.UriKind.Absolute);
             this.webBrowser1.DocumentCompleted += new System.Windows.Forms.WebBrowserDocumentCompletedEventHandler(this.webBrowser1_DocumentCompleted);
             // 
             // label1
