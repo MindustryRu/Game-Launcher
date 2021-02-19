@@ -353,8 +353,9 @@ namespace Launcher_v2
                 {
                     File.Delete(Application.StartupPath + "/version");
                     MessageBox.Show("Лаунчер будет перезагружен!\n\nОбнаружена ошибка расположения клиента", "Ошибка!");
-                    //Process.Start(Application.StartupPath + "/Updater.exe");
-                    Application.Exit();
+                    
+                    Application.Restart();
+                    
                 }
             }
         }
