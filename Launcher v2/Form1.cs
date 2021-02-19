@@ -6,8 +6,6 @@ using System.Net;
 using System.Windows.Forms;
 using System.Xml.Linq;
 using Ionic.Zip;
-using System.Collections;
-using System.Drawing;
 
 namespace Launcher_v2
 {
@@ -19,8 +17,9 @@ namespace Launcher_v2
             InitializeComponent();
             //Download progress
             backgroundWorker1.RunWorkerAsync();
-            roundButton1.Enabled = false;
             button5.Enabled = false;
+            label3.Visible = false;
+            timer1.Enabled = false;
 
             this.FormBorderStyle = FormBorderStyle.None;
             this.MouseDown += new MouseEventHandler(Form1_MouseDown);
@@ -82,7 +81,7 @@ namespace Launcher_v2
 
                 using (StreamWriter sw = new StreamWriter("version"))
                 {
-                    sw.Write("125");
+                    sw.Write("1");
                 }
             }
             //checks client version
@@ -178,12 +177,37 @@ namespace Launcher_v2
 
         private void backgroundWorker1_RunWorkerCompleted(object sender, RunWorkerCompletedEventArgs e)
         {
-            roundButton1.Enabled = true;
+            timer1.Enabled = true;
+            timer1.Interval = 5;
+            progressBar1.Maximum = 100;
+            progressBar1.Value = 0;
             button5.Enabled = true;
-
             this.downloadLbl.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
             downloadLbl.Text = "Используется актуальная версия игры!";
+            label1.Text = System.IO.File.ReadAllText(Application.StartupPath + "/version");
 
+        }
+
+        private void timer1_Tick(object sender, EventArgs e)
+        {
+            if (progressBar1.Maximum == progressBar1.Value)
+            {
+                timer1.Enabled = false;
+                progressBar1.Visible = false;
+                downloadLbl.Visible = true;
+                label3.Visible = false;
+                button8.Enabled = true;
+
+
+            }
+            else
+            {
+                downloadLbl.Visible = false;
+                label3.Visible = true;
+                progressBar1.Value++;
+                button8.Enabled = false;
+
+            }
         }
 
         public bool IsProcessOpen(string name)
@@ -204,20 +228,16 @@ namespace Launcher_v2
         {
 
         }
-
         private void button5_Click(object sender, EventArgs e)
         {
             Application.Exit();
         }
-
         private void button1_Click(object sender, EventArgs e)
         {
             this.WindowState = FormWindowState.Minimized;
         }
-
         private void Form1_Load(object sender, EventArgs e)
         {
-
             ToolTip t = new ToolTip();
             t.SetToolTip(button6, "Откроет папку с модификациями игры");
             t.SetToolTip(button7, "Откроет папку с картами игры");
@@ -225,44 +245,15 @@ namespace Launcher_v2
             t.SetToolTip(button1, "Свернуть лаунчер");
             t.SetToolTip(button5, "Закрыть лаунчер");
             t.SetToolTip(label2, "Версия игры установленная у вас.");
-            label1.Text = System.IO.File.ReadAllText(Application.StartupPath + "/version");
         }
-
-        private void roundButton1_Click(object sender, EventArgs e)
-        {
-            if (IsProcessOpen("Mindustry"))
-            {
-                MessageBox.Show("Клиент уже запущен!");
-            }
-            else
-            {
-                string dirName1 = (Application.StartupPath + "/Mindustry.ru//Mindustry.exe");
-                string dirName = (Application.StartupPath + "/Mindustry.ru//");
-                if (Directory.Exists(dirName) && File.Exists(dirName1) == true)
-                {
-                    Process.Start(Application.StartupPath + "\\Mindustry.ru\\Mindustry.exe");
-                    Application.Exit();
-                }
-                else
-                {
-                    File.Delete(Application.StartupPath + "/version");
-                    MessageBox.Show("Лаунчер будет перезагружен!\n\nОбнаружена ошибка расположения клиента", "Ошибка!");
-                    Process.Start(Application.StartupPath + "/Updater.exe");
-                    Application.Exit();
-                }
-            }
-        }
-
         private void webBrowser1_DocumentCompleted(object sender, WebBrowserDocumentCompletedEventArgs e)
         {
 
         }
-
         private void pictureBox2_Click_1(object sender, EventArgs e)
         {
 
         }
-
         private void button2_Click(object sender, EventArgs e)
         {
             DialogResult dialogResult = MessageBox.Show("Вы хотите перейти в Discord Mindustry.ru?", "Подтвердите действие!", MessageBoxButtons.YesNo);
@@ -335,10 +326,37 @@ namespace Launcher_v2
                 //do something else
             }
         }
-
         private void label1_Click(object sender, EventArgs e)
         {
 
+        }
+        private void progressBar1_Click(object sender, EventArgs e)
+        {
+           
+        }
+        private void button8_Click(object sender, EventArgs e)
+        {
+            if (IsProcessOpen("Mindustry"))
+            {
+                MessageBox.Show("Клиент уже запущен!");
+            }
+            else
+            {
+                string dirName1 = (Application.StartupPath + "/Mindustry.ru//Mindustry.exe");
+                string dirName = (Application.StartupPath + "/Mindustry.ru//");
+                if (Directory.Exists(dirName) && File.Exists(dirName1) == true)
+                {
+                    Process.Start(Application.StartupPath + "\\Mindustry.ru\\Mindustry.exe");
+                    Application.Exit();
+                }
+                else
+                {
+                    File.Delete(Application.StartupPath + "/version");
+                    MessageBox.Show("Лаунчер будет перезагружен!\n\nОбнаружена ошибка расположения клиента", "Ошибка!");
+                    Process.Start(Application.StartupPath + "/Updater.exe");
+                    Application.Exit();
+                }
+            }
         }
     }
 }

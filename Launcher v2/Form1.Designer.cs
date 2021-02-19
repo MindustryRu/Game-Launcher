@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Form1));
             this.backgroundWorker1 = new System.ComponentModel.BackgroundWorker();
             this.downloadLbl = new System.Windows.Forms.Label();
@@ -47,7 +48,9 @@
             this.button1 = new System.Windows.Forms.Button();
             this.button5 = new System.Windows.Forms.Button();
             this.pictureBox2 = new System.Windows.Forms.PictureBox();
-            this.roundButton1 = new Launcher_v2.RoundButton();
+            this.button8 = new System.Windows.Forms.Button();
+            this.timer1 = new System.Windows.Forms.Timer(this.components);
+            this.label3 = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
@@ -66,11 +69,11 @@
             this.downloadLbl.BackColor = System.Drawing.Color.Transparent;
             this.downloadLbl.Font = new System.Drawing.Font("Times New Roman", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.downloadLbl.ForeColor = System.Drawing.Color.White;
-            this.downloadLbl.Location = new System.Drawing.Point(145, 263);
+            this.downloadLbl.Location = new System.Drawing.Point(145, 302);
             this.downloadLbl.Name = "downloadLbl";
-            this.downloadLbl.Size = new System.Drawing.Size(94, 15);
+            this.downloadLbl.Size = new System.Drawing.Size(26, 15);
             this.downloadLbl.TabIndex = 21;
-            this.downloadLbl.Text = "Download Label";
+            this.downloadLbl.Text = "Dlb";
             // 
             // closeBtn
             // 
@@ -98,10 +101,11 @@
             // 
             // progressBar1
             // 
-            this.progressBar1.Location = new System.Drawing.Point(145, 281);
+            this.progressBar1.Location = new System.Drawing.Point(148, 320);
             this.progressBar1.Name = "progressBar1";
-            this.progressBar1.Size = new System.Drawing.Size(323, 23);
+            this.progressBar1.Size = new System.Drawing.Size(323, 13);
             this.progressBar1.TabIndex = 18;
+            this.progressBar1.Click += new System.EventHandler(this.progressBar1_Click);
             // 
             // webBrowser1
             // 
@@ -111,7 +115,7 @@
             this.webBrowser1.Name = "webBrowser1";
             this.webBrowser1.ScriptErrorsSuppressed = true;
             this.webBrowser1.ScrollBarsEnabled = false;
-            this.webBrowser1.Size = new System.Drawing.Size(323, 226);
+            this.webBrowser1.Size = new System.Drawing.Size(323, 265);
             this.webBrowser1.TabIndex = 0;
             this.webBrowser1.TabStop = false;
             this.webBrowser1.Url = new System.Uri("http://update.mindustry.ru/web/", System.UriKind.Absolute);
@@ -122,7 +126,7 @@
             this.label1.AutoSize = true;
             this.label1.BackColor = System.Drawing.Color.Transparent;
             this.label1.ForeColor = System.Drawing.Color.Transparent;
-            this.label1.Location = new System.Drawing.Point(216, 307);
+            this.label1.Location = new System.Drawing.Point(70, 320);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(28, 13);
             this.label1.TabIndex = 55;
@@ -135,7 +139,7 @@
             this.label2.BackColor = System.Drawing.Color.Transparent;
             this.label2.Cursor = System.Windows.Forms.Cursors.Help;
             this.label2.ForeColor = System.Drawing.Color.Transparent;
-            this.label2.Location = new System.Drawing.Point(145, 307);
+            this.label2.Location = new System.Drawing.Point(0, 320);
             this.label2.Margin = new System.Windows.Forms.Padding(0);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(79, 13);
@@ -150,7 +154,7 @@
             this.button7.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
             this.button7.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
             this.button7.ForeColor = System.Drawing.Color.Transparent;
-            this.button7.Location = new System.Drawing.Point(39, 158);
+            this.button7.Location = new System.Drawing.Point(43, 160);
             this.button7.Name = "button7";
             this.button7.Size = new System.Drawing.Size(90, 30);
             this.button7.TabIndex = 54;
@@ -165,7 +169,7 @@
             this.button6.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
             this.button6.ForeColor = System.Drawing.Color.Transparent;
             this.button6.Image = ((System.Drawing.Image)(resources.GetObject("button6.Image")));
-            this.button6.Location = new System.Drawing.Point(39, 194);
+            this.button6.Location = new System.Drawing.Point(43, 196);
             this.button6.Name = "button6";
             this.button6.Size = new System.Drawing.Size(90, 30);
             this.button6.TabIndex = 53;
@@ -179,7 +183,7 @@
             this.button4.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
             this.button4.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
             this.button4.ForeColor = System.Drawing.Color.Transparent;
-            this.button4.Location = new System.Drawing.Point(39, 274);
+            this.button4.Location = new System.Drawing.Point(43, 269);
             this.button4.Name = "button4";
             this.button4.Size = new System.Drawing.Size(90, 30);
             this.button4.TabIndex = 52;
@@ -192,8 +196,8 @@
             this.button3.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
             this.button3.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
             this.button3.ForeColor = System.Drawing.Color.Transparent;
-            this.button3.Image = ((System.Drawing.Image)(resources.GetObject("button3.Image")));
-            this.button3.Location = new System.Drawing.Point(39, 88);
+            this.button3.Image = global::Launcher_v2.Properties.Resources.site;
+            this.button3.Location = new System.Drawing.Point(43, 88);
             this.button3.Name = "button3";
             this.button3.Size = new System.Drawing.Size(90, 30);
             this.button3.TabIndex = 51;
@@ -208,7 +212,7 @@
             this.button2.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
             this.button2.ForeColor = System.Drawing.Color.Transparent;
             this.button2.Image = ((System.Drawing.Image)(resources.GetObject("button2.Image")));
-            this.button2.Location = new System.Drawing.Point(39, 123);
+            this.button2.Location = new System.Drawing.Point(43, 124);
             this.button2.Name = "button2";
             this.button2.Size = new System.Drawing.Size(90, 30);
             this.button2.TabIndex = 50;
@@ -272,28 +276,38 @@
             this.pictureBox2.TabStop = false;
             this.pictureBox2.Click += new System.EventHandler(this.pictureBox2_Click_1);
             // 
-            // roundButton1
+            // button8
             // 
-            this.roundButton1.BackColor = System.Drawing.Color.White;
-            this.roundButton1.BackColor2 = System.Drawing.Color.Green;
-            this.roundButton1.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("roundButton1.BackgroundImage")));
-            this.roundButton1.ButtonBorderColor = System.Drawing.Color.Black;
-            this.roundButton1.ButtonHighlightColor = System.Drawing.Color.Green;
-            this.roundButton1.ButtonHighlightColor2 = System.Drawing.Color.White;
-            this.roundButton1.ButtonHighlightForeColor = System.Drawing.Color.Black;
-            this.roundButton1.ButtonPressedColor = System.Drawing.Color.Green;
-            this.roundButton1.ButtonPressedColor2 = System.Drawing.Color.White;
-            this.roundButton1.ButtonPressedForeColor = System.Drawing.Color.White;
-            this.roundButton1.ButtonRoundRadius = 20;
-            this.roundButton1.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.roundButton1.Font = new System.Drawing.Font("Impact", 9.75F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.roundButton1.ForeColor = System.Drawing.Color.Black;
-            this.roundButton1.Location = new System.Drawing.Point(393, 310);
-            this.roundButton1.Name = "roundButton1";
-            this.roundButton1.Size = new System.Drawing.Size(75, 23);
-            this.roundButton1.TabIndex = 34;
-            this.roundButton1.Text = "Играть!";
-            this.roundButton1.Click += new System.EventHandler(this.roundButton1_Click);
+            this.button8.BackColor = System.Drawing.Color.Transparent;
+            this.button8.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
+            this.button8.Cursor = System.Windows.Forms.Cursors.Default;
+            this.button8.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
+            this.button8.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.button8.ForeColor = System.Drawing.Color.Transparent;
+            this.button8.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.button8.Location = new System.Drawing.Point(43, 52);
+            this.button8.Name = "button8";
+            this.button8.RightToLeft = System.Windows.Forms.RightToLeft.No;
+            this.button8.Size = new System.Drawing.Size(90, 30);
+            this.button8.TabIndex = 57;
+            this.button8.Text = "Играть";
+            this.button8.UseVisualStyleBackColor = false;
+            this.button8.Click += new System.EventHandler(this.button8_Click);
+            // 
+            // timer1
+            // 
+            this.timer1.Tick += new System.EventHandler(this.timer1_Tick);
+            // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.BackColor = System.Drawing.Color.Transparent;
+            this.label3.ForeColor = System.Drawing.Color.White;
+            this.label3.Location = new System.Drawing.Point(214, 302);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(183, 13);
+            this.label3.TabIndex = 58;
+            this.label3.Text = "Проверка файлов на целостность.";
             // 
             // Form1
             // 
@@ -303,6 +317,8 @@
             this.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("$this.BackgroundImage")));
             this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
             this.ClientSize = new System.Drawing.Size(480, 337);
+            this.Controls.Add(this.label3);
+            this.Controls.Add(this.button8);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.button7);
@@ -314,13 +330,12 @@
             this.Controls.Add(this.pictureBox3);
             this.Controls.Add(this.webBrowser1);
             this.Controls.Add(this.button1);
-            this.Controls.Add(this.roundButton1);
             this.Controls.Add(this.button5);
             this.Controls.Add(this.downloadLbl);
             this.Controls.Add(this.closeBtn);
             this.Controls.Add(this.minimizeBtn);
-            this.Controls.Add(this.progressBar1);
             this.Controls.Add(this.pictureBox2);
+            this.Controls.Add(this.progressBar1);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "Form1";
@@ -343,7 +358,6 @@
         private System.Windows.Forms.Button closeBtn;
         private System.Windows.Forms.Button minimizeBtn;
         private System.Windows.Forms.ProgressBar progressBar1;
-        private RoundButton roundButton1;
         private System.Windows.Forms.Button button1;
         private System.Windows.Forms.WebBrowser webBrowser1;
         private System.Windows.Forms.PictureBox pictureBox2;
@@ -356,6 +370,9 @@
         private System.Windows.Forms.Button button7;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.Button button8;
+        private System.Windows.Forms.Timer timer1;
+        private System.Windows.Forms.Label label3;
     }
 }
 
