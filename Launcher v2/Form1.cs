@@ -171,6 +171,7 @@ namespace Launcher_v2
         private void backgroundWorker1_ProgressChanged(object sender, ProgressChangedEventArgs e)
         {
             button8.Enabled = false;
+            button4.Enabled = false;
             progressBar1.Value = e.ProgressPercentage;
             downloadLbl.ForeColor = System.Drawing.Color.Red;
             downloadLbl.Text = "Скачивается обновление, ожидайте пожалуйста......";
@@ -199,6 +200,7 @@ namespace Launcher_v2
                 downloadLbl.Visible = true;
                 label3.Visible = false;
                 button8.Enabled = true;
+                button4.Enabled = true;
 
 
             }
