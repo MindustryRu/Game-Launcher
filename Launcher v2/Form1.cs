@@ -170,6 +170,7 @@ namespace Launcher_v2
 
         private void backgroundWorker1_ProgressChanged(object sender, ProgressChangedEventArgs e)
         {
+            button8.Enabled = false;
             progressBar1.Value = e.ProgressPercentage;
             downloadLbl.ForeColor = System.Drawing.Color.Red;
             downloadLbl.Text = "Скачивается обновление, ожидайте пожалуйста......";
@@ -185,6 +186,7 @@ namespace Launcher_v2
             this.downloadLbl.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
             downloadLbl.Text = "Используется актуальная версия игры!";
             label1.Text = System.IO.File.ReadAllText(Application.StartupPath + "/version");
+            label5.Text = System.IO.File.ReadAllText(Application.StartupPath + "/updater");
 
         }
 
