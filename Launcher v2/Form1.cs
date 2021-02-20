@@ -6,6 +6,8 @@ using System.Net;
 using System.Windows.Forms;
 using System.Xml.Linq;
 using Ionic.Zip;
+using System.Drawing;
+using System.Net.NetworkInformation;
 
 namespace Launcher_v2
 {
@@ -15,14 +17,26 @@ namespace Launcher_v2
         public Form1()
         {
             InitializeComponent();
-            //Download progress
             backgroundWorker1.RunWorkerAsync();
             button5.Enabled = false;
             label3.Visible = false;
             timer1.Enabled = false;
-
             this.FormBorderStyle = FormBorderStyle.None;
             this.MouseDown += new MouseEventHandler(Form1_MouseDown);
+            label4.Parent = pictureBox4;
+            label5.Parent = pictureBox4;
+            label6.Parent = pictureBox4;
+            pictureBox6.Parent = pictureBox4;
+            var pos = this.PointToScreen(label1.Location);
+            pos = pictureBox5.PointToClient(pos);
+            label1.Parent = pictureBox5;
+            label1.Location = pos;
+            label1.BackColor = Color.Transparent;
+            var pos2 = this.PointToScreen(label2.Location);
+            pos2 = pictureBox5.PointToClient(pos2);
+            label2.Parent = pictureBox5;
+            label2.Location = pos2;
+            label2.BackColor = Color.Transparent;
         }
 
         //Makes the form dragable
@@ -165,6 +179,7 @@ namespace Launcher_v2
                     //Delete Zip File
                     deleteFile(file);
                 }
+
             }
         }
 
@@ -185,8 +200,16 @@ namespace Launcher_v2
             progressBar1.Value = 0;
             button5.Enabled = true;
             this.downloadLbl.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
-            downloadLbl.Text = "Используется актуальная версия игры!";
+            downloadLbl.Text = "Обновлений для игры нет.";
             label1.Text = System.IO.File.ReadAllText(Application.StartupPath + "/version");
+            FileStream fs = null;
+            if (!File.Exists("updater"))
+            {
+                using (fs = File.Create("updater"))
+                {
+
+                }
+            }
             label5.Text = System.IO.File.ReadAllText(Application.StartupPath + "/updater");
 
         }
@@ -243,6 +266,41 @@ namespace Launcher_v2
         }
         private void Form1_Load(object sender, EventArgs e)
         {
+            IPStatus status = IPStatus.TimedOut;
+            try
+            {
+
+                Ping ping = new Ping();
+                PingReply reply = ping.Send(@"update.mindustry.ru");
+                status = reply.Status;
+            }
+            catch { }
+            if (status != IPStatus.Success)
+            {
+                DialogResult dialogResult = MessageBox.Show("У лаунчера нет доступа к интернету для проверки обновлений. \nПродолжить работу автономно?", "Внимание!", MessageBoxButtons.YesNo);
+                if (dialogResult == DialogResult.Yes)
+                {
+                    pictureBox6.BackgroundImage = global::Launcher_v2.Properties.Resources.server_offline;
+                    ToolTip t1 = new ToolTip();
+                    t1.SetToolTip(pictureBox6, "Offline(нет доступа)");
+                    webBrowser1.Visible = false;
+                    pictureBox7.Visible = true;
+                    
+                }
+                else if (dialogResult == DialogResult.No)
+                {
+                    Application.Exit();
+                }
+
+            }
+            else
+            {
+                pictureBox6.BackgroundImage = global::Launcher_v2.Properties.Resources.server_online;
+                ToolTip t2 = new ToolTip();
+                t2.SetToolTip(pictureBox6, "Online");
+                pictureBox7.Visible = false;
+            }
+
             ToolTip t = new ToolTip();
             t.SetToolTip(button6, "Откроет папку с модификациями игры");
             t.SetToolTip(button7, "Откроет папку с картами игры");
@@ -250,6 +308,8 @@ namespace Launcher_v2
             t.SetToolTip(button1, "Свернуть лаунчер");
             t.SetToolTip(button5, "Закрыть лаунчер");
             t.SetToolTip(label2, "Версия игры установленная у вас.");
+            t.SetToolTip(label6, "Наличие доступа к серверу обновлений.");
+            t.SetToolTip(label4, "Версия лаунчера.");
         }
         private void webBrowser1_DocumentCompleted(object sender, WebBrowserDocumentCompletedEventArgs e)
         {
@@ -362,6 +422,11 @@ namespace Launcher_v2
                     Application.Exit();
                 }
             }
+        }
+
+        private void pictureBox6_Click(object sender, EventArgs e)
+        {
+            
         }
     }
 }

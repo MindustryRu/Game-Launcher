@@ -153,20 +153,19 @@
   <ItemGroup>
     <Content Include="favicon.ico" />
     <Content Include="Ionic.Zip.dll" />
-    <None Include="Resources\play.png" />
-    <None Include="Resources\site.png" />
-    <None Include="Resources\close2.png" />
-    <None Include="Resources\minimize2.png" />
-    <None Include="Resources\re.png" />
-    <None Include="Resources\modifcation.png" />
-    <None Include="Resources\maps.png" />
-    <None Include="Resources\discord.png" />
+    <None Include="Resources\close.png" />
+    <None Include="Resources\minimize.png" />
+    <None Include="Resources\playButton.png" />
+    <None Include="Resources\otherButton.png" />
+    <None Include="Resources\repairButton.png" />
+    <None Include="Resources\GOffline.png" />
+    <None Include="Resources\waiting.png" />
+    <None Include="Resources\server_online.png" />
+    <None Include="Resources\server_offline.png" />
     <None Include="Resources\Bg_Main.jpg" />
     <None Include="Resources\logo1.png" />
     <None Include="Resources\logo2.png" />
     <None Include="Resources\Bg_Menu.png" />
-    <None Include="Resources\maps1.png" />
-    <None Include="Resources\setting.png" />
     <None Include="Resources\logo_old.png" />
   </ItemGroup>
   <ItemGroup>
