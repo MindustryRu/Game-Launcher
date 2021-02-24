@@ -6,7 +6,6 @@ namespace TempWinFormProject
 {
     internal sealed class StartPatams
     {
-        public static string[] args;
     }
     static class Program
     {

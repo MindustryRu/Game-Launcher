@@ -8,38 +8,29 @@ using System.Xml.Linq;
 using Ionic.Zip;
 using System.Drawing;
 using System.Net.NetworkInformation;
+using System.Net.Sockets;
+using System.Collections.Generic;
+using System.Text;
+using System.Drawing.Drawing2D;
 
 namespace Launcher_v2
 {
     public partial class Form1 : Form
     {
-
+        #region -- Инициализировать компоненты --
         public Form1()
         {
             InitializeComponent();
-            backgroundWorker1.RunWorkerAsync();
             button5.Enabled = false;
             label3.Visible = false;
             timer1.Enabled = false;
             this.FormBorderStyle = FormBorderStyle.None;
             this.MouseDown += new MouseEventHandler(Form1_MouseDown);
-            label4.Parent = pictureBox4;
-            label5.Parent = pictureBox4;
-            label6.Parent = pictureBox4;
-            pictureBox6.Parent = pictureBox4;
-            var pos = this.PointToScreen(label1.Location);
-            pos = pictureBox5.PointToClient(pos);
-            label1.Parent = pictureBox5;
-            label1.Location = pos;
-            label1.BackColor = Color.Transparent;
-            var pos2 = this.PointToScreen(label2.Location);
-            pos2 = pictureBox5.PointToClient(pos2);
-            label2.Parent = pictureBox5;
-            label2.Location = pos2;
-            label2.BackColor = Color.Transparent;
+            backgroundWorker1.RunWorkerAsync();
         }
+        #endregion
 
-        //Makes the form dragable
+        #region -- Делает форму перетаскиваемой --
         private void Form1_MouseDown(object sender,
         System.Windows.Forms.MouseEventArgs e)
         {
@@ -47,20 +38,9 @@ namespace Launcher_v2
             Message m = Message.Create(base.Handle, 0xa1, new IntPtr(2), IntPtr.Zero);
             this.WndProc(ref m);
         }
+        #endregion
 
-        //Close Button
-        private void closeBtn_Click(object sender, EventArgs e)
-        {
-            this.Close();
-        }
-
-        //Minimize Button
-        private void minimizeBtn_Click(object sender, EventArgs e)
-        {
-            this.WindowState = FormWindowState.Minimized;
-        }
-
-        //Delete File
+        #region -- Загрузчик обновлений клиента --
         static bool deleteFile(string f)
         {
             try
@@ -74,8 +54,6 @@ namespace Launcher_v2
             }
         }
 
-
-        //background Worker: Handles downloading the updates
         private void backgroundWorker1_DoWork(object sender, DoWorkEventArgs e)
         {
             //Defines the server's update directory
@@ -167,8 +145,7 @@ namespace Launcher_v2
                     {
                         foreach (ZipEntry zipFiles in zip)
                         {
-                            //zip.ExtractAll(Root + "\\Mindustry.ru\\", true);
-                            zipFiles.Extract(Root + "\\Mindustry.ru\\", true);
+                            zipFiles.Extract(Root + "\\Mindustry\\", true);
                         }
                     }
 
@@ -182,23 +159,33 @@ namespace Launcher_v2
 
             }
         }
+        #endregion
 
+        #region -- Загрузка обновлений --
         private void backgroundWorker1_ProgressChanged(object sender, ProgressChangedEventArgs e)
         {
+            //this.Size = new Size(175, 125);
+
+            downloadLbl.Visible = true;
             button8.Enabled = false;
             button4.Enabled = false;
             progressBar1.Value = e.ProgressPercentage;
+            label19.Text = (e.ProgressPercentage.ToString() + "%");
             downloadLbl.ForeColor = System.Drawing.Color.Red;
             downloadLbl.Text = "Скачивается обновление, ожидайте пожалуйста......";
         }
+        #endregion
 
+        #region -- Загрузка Обновлений не требуется --
         private void backgroundWorker1_RunWorkerCompleted(object sender, RunWorkerCompletedEventArgs e)
         {
+            this.Invalidate();
             timer1.Enabled = true;
             timer1.Interval = 5;
             progressBar1.Maximum = 100;
             progressBar1.Value = 0;
             button5.Enabled = true;
+            label19.Visible = false;
             this.downloadLbl.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
             downloadLbl.Text = "Обновлений для игры нет.";
             label1.Text = System.IO.File.ReadAllText(Application.StartupPath + "/version");
@@ -209,23 +196,26 @@ namespace Launcher_v2
                 {
 
                 }
+                using (StreamWriter sw = new StreamWriter("updater"))
+                {
+                    sw.Write("0");
+                }
             }
             label5.Text = System.IO.File.ReadAllText(Application.StartupPath + "/updater");
-
         }
+        #endregion
 
+        #region -- Таймер при запуске формы --
         private void timer1_Tick(object sender, EventArgs e)
         {
             if (progressBar1.Maximum == progressBar1.Value)
             {
                 timer1.Enabled = false;
-                progressBar1.Visible = false;
+                //progressBar1.Visible = false; //Видимость progressBar После загрузки и проверки файлов
                 downloadLbl.Visible = true;
                 label3.Visible = false;
                 button8.Enabled = true;
                 button4.Enabled = true;
-
-
             }
             else
             {
@@ -234,10 +224,204 @@ namespace Launcher_v2
                 progressBar1.Value++;
                 button8.Enabled = false;
                 button4.Enabled = false;
-
             }
         }
+        #endregion
 
+        #region -- Проверить пинг и статус -- 
+        private void OnlStatus_Tick(object sender, EventArgs e)
+        {
+            TimerOnlStatus.Interval = 15000;
+            ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+            //Check Online
+            IPStatus status = IPStatus.TimedOut;
+            try
+            {
+                Ping ping1 = new Ping();
+                PingReply reply = ping1.Send(@"update.mindustry.ru");
+                status = reply.Status;
+            }
+            catch { }
+            if (status != IPStatus.Success)
+            {
+                pictureBox6.BackgroundImage = global::Launcher_v2.Properties.Resources.server_offline;
+                return;
+            }
+            else
+            {
+                pictureBox6.BackgroundImage = global::Launcher_v2.Properties.Resources.server_online;
+                var content = new WebClient { Encoding = Encoding.UTF8 }.DownloadString("http://update.mindustry.ru/OnlStatus/status/Hub.json");
+                var result = content;
+                label11.Text = result;
+
+                var content1 = new WebClient { Encoding = Encoding.UTF8 }.DownloadString("http://update.mindustry.ru/OnlStatus/status/Survival.json");
+                var result1 = content1;
+                label12.Text = result1;
+
+                var content2 = new WebClient { Encoding = Encoding.UTF8 }.DownloadString("http://update.mindustry.ru/OnlStatus/status/PvP.json");
+                var result2 = content2;
+                label13.Text = result2;
+
+                var content3 = new WebClient { Encoding = Encoding.UTF8 }.DownloadString("http://update.mindustry.ru/OnlStatus/status/Hex.json");
+                var result3 = content3;
+                label14.Text = result3;
+
+                var content4 = new WebClient { Encoding = Encoding.UTF8 }.DownloadString("http://update.mindustry.ru/OnlStatus/status/TowerDefence.json");
+                var result4 = content4;
+                label15.Text = result4;
+
+                var content5 = new WebClient { Encoding = Encoding.UTF8 }.DownloadString("http://update.mindustry.ru/OnlStatus/status/SandBox.json");
+                var result5 = content5;
+                label16.Text = result5;
+
+                var content6 = new WebClient { Encoding = Encoding.UTF8 }.DownloadString("http://update.mindustry.ru/OnlStatus/status/BBM-Server.json");
+                var result6 = content6;
+                //label17.Text = result6;
+            }
+            //End Check Online
+
+            //Ping
+            List<string> serversList = new List<string>();
+            serversList.Add("Mindustry.ru"); //address
+            Ping ping = new System.Net.NetworkInformation.Ping();
+            PingReply pingReply = null;
+
+            foreach (string server in serversList)
+            {
+                pingReply = ping.Send(server);
+
+                if (pingReply.Status != IPStatus.TimedOut)
+                {
+                    label18.Text = pingReply.RoundtripTime.ToString();
+                }
+
+            }
+            //End ping
+
+            //Check online Status Hub
+            using (TcpClient tcpClient = new TcpClient())
+            {
+                try
+                {
+                    tcpClient.Connect("37.46.130.209", 6567);
+                    pictureBox1.Image = global::Launcher_v2.Properties.Resources.Sonline;
+                    label2.Text = "Сервер включен.";
+                }
+                catch (Exception)
+                {
+                    pictureBox1.Image = global::Launcher_v2.Properties.Resources.Soffline;
+                    label2.Text = "Сервер выключен.";
+                }
+            }
+            //End Check online Status
+
+            //Check online Status Survival
+            using (TcpClient tcpClient = new TcpClient())
+            {
+                try
+                {
+                    tcpClient.Connect("62.109.5.203", 6567);
+                    pictureBox2.Image = global::Launcher_v2.Properties.Resources.Sonline;
+                    label4.Text = "Сервер включен.";
+                }
+                catch (Exception)
+                {
+                    pictureBox2.Image = global::Launcher_v2.Properties.Resources.Soffline;
+                    label4.Text = "Сервер выключен.";
+                }
+            }
+            //End Check online Status
+
+            //Check online Status PvP
+            using (TcpClient tcpClient = new TcpClient())
+            {
+                try
+                {
+                    tcpClient.Connect("62.109.5.203", 6577);
+                    pictureBox3.Image = global::Launcher_v2.Properties.Resources.Sonline;
+                    label6.Text = "Сервер включен.";
+                }
+                catch (Exception)
+                {
+                    pictureBox3.Image = global::Launcher_v2.Properties.Resources.Soffline;
+                    label6.Text = "Сервер выключен.";
+                }
+            }
+            //End Check online Status
+
+            //Check online Status hex
+            using (TcpClient tcpClient = new TcpClient())
+            {
+                try
+                {
+                    tcpClient.Connect("62.109.5.203", 6676);
+                    pictureBox4.Image = global::Launcher_v2.Properties.Resources.Sonline;
+                    label7.Text = "Сервер включен.";
+                }
+                catch (Exception)
+                {
+                    pictureBox4.Image = global::Launcher_v2.Properties.Resources.Soffline;
+                    label7.Text = "Сервер выключен.";
+                }
+            }
+            //End Check online Status
+
+            //Check online Status Td
+            using (TcpClient tcpClient = new TcpClient())
+            {
+                try
+                {
+                    tcpClient.Connect("62.109.5.203", 6597);
+                    pictureBox5.Image = global::Launcher_v2.Properties.Resources.Sonline;
+                    label8.Text = "Сервер включен.";
+                }
+                catch (Exception)
+                {
+                    pictureBox5.Image = global::Launcher_v2.Properties.Resources.Soffline;
+                    label8.Text = "Сервер выключен.";
+                }
+            }
+            //End Check online Status
+
+            //Check online Status SandBox
+            using (TcpClient tcpClient = new TcpClient())
+            {
+                try
+                {
+                    tcpClient.Connect("62.109.5.203", 6667);
+                    pictureBox7.Image = global::Launcher_v2.Properties.Resources.Sonline;
+                    label9.Text = "Сервер включен.";
+                }
+                catch (Exception)
+                {
+                    pictureBox7.Image = global::Launcher_v2.Properties.Resources.Soffline;
+                    label9.Text = "Сервер выключен.";
+                }
+            }
+            //End Check online Status
+
+            //Check online Status BBM-Server
+            using (TcpClient tcpClient = new TcpClient())
+            {
+                try
+                {
+                    tcpClient.Connect("62.109.5.203", 7777);
+                    pictureBox8.Image = global::Launcher_v2.Properties.Resources.Sonline;
+                    label10.Text = "Сервер включен.";
+                }
+                catch (Exception)
+                {
+                    pictureBox8.Image = global::Launcher_v2.Properties.Resources.Soffline;
+                    label10.Text = "Сервер выключен.";
+                }
+            }
+            //End Check online Status
+
+            ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+        }
+        #endregion
+
+        #region -- Проверить, запущен ли Mindustry.exe --
         public bool IsProcessOpen(string name)
         {
             foreach (Process clsProcess in Process.GetProcesses())
@@ -251,25 +435,18 @@ namespace Launcher_v2
             }
             return false;
         }
+        #endregion
 
-        private void patchNotes_DocumentCompleted(object sender, WebBrowserDocumentCompletedEventArgs e)
-        {
-
-        }
-        private void button5_Click(object sender, EventArgs e)
-        {
-            Application.Exit();
-        }
-        private void button1_Click(object sender, EventArgs e)
-        {
-            this.WindowState = FormWindowState.Minimized;
-        }
+        #region -- Загрузить форму --
         private void Form1_Load(object sender, EventArgs e)
         {
+            downloadLbl.Visible = false;
+            TimerOnlStatus.Enabled = true;
+            SetRoundedShape(progressBar1, 7);
+            ToolTip t = new ToolTip();
             IPStatus status = IPStatus.TimedOut;
             try
             {
-
                 Ping ping = new Ping();
                 PingReply reply = ping.Send(@"update.mindustry.ru");
                 status = reply.Status;
@@ -281,44 +458,42 @@ namespace Launcher_v2
                 if (dialogResult == DialogResult.Yes)
                 {
                     pictureBox6.BackgroundImage = global::Launcher_v2.Properties.Resources.server_offline;
-                    ToolTip t1 = new ToolTip();
-                    t1.SetToolTip(pictureBox6, "Offline(нет доступа)");
-                    webBrowser1.Visible = false;
-                    pictureBox7.Visible = true;
-                    
+                    webBrowser1.Visible = false;   
                 }
                 else if (dialogResult == DialogResult.No)
                 {
                     Application.Exit();
                 }
-
             }
             else
             {
                 pictureBox6.BackgroundImage = global::Launcher_v2.Properties.Resources.server_online;
-                ToolTip t2 = new ToolTip();
-                t2.SetToolTip(pictureBox6, "Online");
-                pictureBox7.Visible = false;
-            }
-
-            ToolTip t = new ToolTip();
+            }            
             t.SetToolTip(button6, "Откроет папку с модификациями игры");
             t.SetToolTip(button7, "Откроет папку с картами игры");
             t.SetToolTip(button4, "Функция ремонта и восстановления клиента в исходное состояние");
             t.SetToolTip(button1, "Свернуть лаунчер");
             t.SetToolTip(button5, "Закрыть лаунчер");
-            t.SetToolTip(label2, "Версия игры установленная у вас.");
-            t.SetToolTip(label6, "Наличие доступа к серверу обновлений.");
-            t.SetToolTip(label4, "Версия лаунчера.");
+            t.SetToolTip(pictureBox6, "Статус подключения к серверу обновлений.");
+            t.SetToolTip(label18, "Ping до серверов Mindustry.ru");         
         }
-        private void webBrowser1_DocumentCompleted(object sender, WebBrowserDocumentCompletedEventArgs e)
-        {
+        #endregion
 
-        }
-        private void pictureBox2_Click_1(object sender, EventArgs e)
-        {
+        #region -- Кнопки --
 
+        #region -- Кнопка Закрыть\Свернуть лаунчер --
+        private void button5_Click(object sender, EventArgs e)
+        {
+            Application.Exit();
         }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            this.WindowState = FormWindowState.Minimized;
+        }
+        #endregion
+
+        #region -- Кнопка Discord --
         private void button2_Click(object sender, EventArgs e)
         {
             DialogResult dialogResult = MessageBox.Show("Вы хотите перейти в Discord Mindustry.ru?", "Подтвердите действие!", MessageBoxButtons.YesNo);
@@ -330,9 +505,10 @@ namespace Launcher_v2
             {
                 //do something else
             }
-
         }
+        #endregion
 
+        #region -- Кнопка Сайт --
         private void button3_Click(object sender, EventArgs e)
         {
             DialogResult dialogResult = MessageBox.Show("Вы хотите перейти перейти на сайт?", "Подтвердите действие!", MessageBoxButtons.YesNo);
@@ -345,7 +521,9 @@ namespace Launcher_v2
                 //do something else
             }
         }
+        #endregion
 
+        #region -- Кнопка карты --
         private void button7_Click(object sender, EventArgs e)
         {
             {
@@ -360,10 +538,11 @@ namespace Launcher_v2
                 }
             }
         }
+        #endregion
 
+        #region -- Кнопка моды --
         private void button6_Click(object sender, EventArgs e)
         {
-
             {
                 string dirName = Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData) + "/Mindustry/mods/";
                 if (Directory.Exists(dirName))
@@ -376,7 +555,9 @@ namespace Launcher_v2
                 }
             }
         }
+        #endregion
 
+        #region -- Кнопка ремонта --
         private void button4_Click(object sender, EventArgs e)
         {
             DialogResult dialogResult = MessageBox.Show("Вы запустили средство восстановления клиента\n\nВы уверены что хотите заново переустановить клиент?", "Внимание!", MessageBoxButtons.YesNo);
@@ -391,14 +572,9 @@ namespace Launcher_v2
                 //do something else
             }
         }
-        private void label1_Click(object sender, EventArgs e)
-        {
+        #endregion
 
-        }
-        private void progressBar1_Click(object sender, EventArgs e)
-        {
-           
-        }
+        #region -- Кнопка запуска игры --
         private void button8_Click(object sender, EventArgs e)
         {
             if (IsProcessOpen("Mindustry"))
@@ -407,26 +583,73 @@ namespace Launcher_v2
             }
             else
             {
-                string dirName1 = (Application.StartupPath + "/Mindustry.ru//Mindustry.exe");
-                string dirName = (Application.StartupPath + "/Mindustry.ru//");
+                string dirName1 = (Application.StartupPath + "/Mindustry//Mindustry.exe");
+                string dirName = (Application.StartupPath + "/Mindustry//");
                 if (Directory.Exists(dirName) && File.Exists(dirName1) == true)
                 {
-                    Process.Start(Application.StartupPath + "\\Mindustry.ru\\Mindustry.exe");
+                    Process.Start(Application.StartupPath + "//Mindustry//Mindustry.exe");
                     Application.Exit();
                 }
                 else
                 {
-                    File.Delete(Application.StartupPath + "/version");
-                    MessageBox.Show("Лаунчер будет перезагружен!\n\nОбнаружена ошибка расположения клиента", "Ошибка!");
-                    Process.Start(Application.StartupPath + "/Updater.exe");
-                    Application.Exit();
+                    DialogResult dialogResult = MessageBox.Show("Лаунчер не может найти каталог игры \nХотите ли вы запустить средство устранения ошибок?", "Внимание!", MessageBoxButtons.YesNo);
+                    if (dialogResult == DialogResult.Yes)
+                    {
+
+                        if (!File.Exists("Updater.exe"))
+                        {
+                            MessageBox.Show("Лаунчер не может найти средство устранения ошибок\nПереустановите программу.", "Внимание!");
+                            Application.Exit();
+                        }
+                        else
+                        {
+                            File.Delete(Application.StartupPath + "/version");
+                            Process.Start(Application.StartupPath + "/Updater.exe");
+                            Application.Exit();
+                        }    
+                        
+
+                    }
+                    else if (dialogResult == DialogResult.No)
+                    {
+                        //do something else
+                    }
                 }
             }
         }
+        #endregion
 
-        private void pictureBox6_Click(object sender, EventArgs e)
+        #region -- Кнопка GitHub --
+        private void button9_Click(object sender, EventArgs e)
         {
-            
+            DialogResult dialogResult = MessageBox.Show("Вы хотите перейти перейти в GitHub?", "Подтвердите действие!", MessageBoxButtons.YesNo);
+            if (dialogResult == DialogResult.Yes)
+            {
+                System.Diagnostics.Process.Start("https://github.com/MindustryRu/Game-Launcher");
+            }
+            else if (dialogResult == DialogResult.No)
+            {
+                //do something else
+            }
         }
+        #endregion
+
+        #endregion
+
+        #region -- Закругление progressBar --
+        public static void SetRoundedShape(Control control, int radius)
+        {
+            GraphicsPath path = new GraphicsPath();
+            path.AddLine(radius, 0, control.Width - radius, 0);
+            path.AddArc(control.Width - radius, 0, radius, radius, 270, 90);
+            path.AddLine(control.Width, radius, control.Width, control.Height - radius);
+            path.AddArc(control.Width - radius, control.Height - radius, radius, radius, 0, 90);
+            path.AddLine(control.Width - radius, control.Height, radius, control.Height);
+            path.AddArc(0, control.Height - radius, radius, radius, 90, 90);
+            path.AddLine(0, control.Height - radius, 0, radius);
+            path.AddArc(0, 0, radius, radius, 180, 90);
+            control.Region = new Region(path);
+        }
+        #endregion
     }
 }
