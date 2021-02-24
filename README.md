@@ -1,6 +1,5 @@
 ![Logo](img/Logo.png)
 
-![Logo](img/Logo_Launcher.png "Launcher screenshot")
 <details> 
   <summary>ENG Description</summary>
   
@@ -30,7 +29,7 @@ For all questions, write to Discord: https://discord.mindustry.ru/
 ![Discord Shield](https://discordapp.com/api/guilds/658670734222163989/widget.png?style=shield)
   
 </details>
-
+![Logo](img/Logo_Launcher.png "Launcher screenshot")
 
 # Developers
 - [MindustryRu](https://github.com/MindustryRu) (Head Developer)
