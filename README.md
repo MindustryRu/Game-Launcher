@@ -1,9 +1,8 @@
 ![Logo](img/Logo.png)
 
-
+![Logo](img/Logo_Launcher.png "Launcher screenshot")
 <details> 
   <summary>ENG Description</summary>
-![Logo](img/Logo_Launcher.png "Launcher screenshot")
   
 - Client auto-update
 - Time\Date\IP\News
@@ -19,7 +18,6 @@ For all questions, write to Discord: https://discord.mindustry.ru/
 
 <details> 
   <summary>RUS Description</summary>
-![Logo](img/Logo_Launcher.png "Скриншот лаунчера")
   
 - Автообновление клиента
 - Время\Дата\IP\Новости
