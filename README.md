@@ -4,6 +4,7 @@
 <details> 
   <summary>ENG Description</summary>
   ![alt text](img/Logo_Launcher.png "Launcher screenshot")
+  
 - Client auto-update
 - Time\Date\IP\News
 - Online server display
@@ -19,6 +20,7 @@ For all questions, write to Discord: https://discord.mindustry.ru/
 <details> 
   <summary>RUS Description</summary>
   ![alt text](img/Logo_Launcher.png "Скриншот лаунчера")
+  
 - Автообновление клиента
 - Время\Дата\IP\Новости
 - Отображение онлайна сервера
