@@ -169,6 +169,7 @@ namespace Launcher_v2
             downloadLbl.Visible = true;
             button8.Enabled = false;
             button4.Enabled = false;
+            button10.Enabled = false;
             progressBar1.Value = e.ProgressPercentage;
             label19.Text = (e.ProgressPercentage.ToString() + "%");
             downloadLbl.ForeColor = System.Drawing.Color.Red;
@@ -185,6 +186,7 @@ namespace Launcher_v2
             progressBar1.Maximum = 100;
             progressBar1.Value = 0;
             button5.Enabled = true;
+            button10.Enabled = true;
             label19.Visible = false;
             this.downloadLbl.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
             downloadLbl.Text = "Обновлений для игры нет.";
@@ -276,7 +278,11 @@ namespace Launcher_v2
 
                 var content6 = new WebClient { Encoding = Encoding.UTF8 }.DownloadString("http://update.mindustry.ru/OnlStatus/status/BBM-Server.json");
                 var result6 = content6;
-                //label17.Text = result6;
+                label10.Text = result6;
+
+                var content7 = new WebClient { Encoding = Encoding.UTF8 }.DownloadString("http://update.mindustry.ru/OnlStatus/status/Attack.json");
+                var result7 = content7;
+                label10.Text = result7;
             }
             //End Check Online
 
@@ -417,6 +423,23 @@ namespace Launcher_v2
             }
             //End Check online Status
 
+            //Check online Status Attack
+            using (TcpClient tcpClient = new TcpClient())
+            {
+                try
+                {
+                    tcpClient.Connect("62.109.5.203", 6587);
+                    pictureBox9.Image = global::Launcher_v2.Properties.Resources.Sonline;
+                    label20.Text = "Сервер включен.";
+                }
+                catch (Exception)
+                {
+                    pictureBox9.Image = global::Launcher_v2.Properties.Resources.Soffline;
+                    label20.Text = "Сервер выключен.";
+                }
+            }
+            //End Check online Status
+
             ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
         }
         #endregion
@@ -503,7 +526,7 @@ namespace Launcher_v2
             }
             else if (dialogResult == DialogResult.No)
             {
-                //do something else
+                //
             }
         }
         #endregion
@@ -518,7 +541,7 @@ namespace Launcher_v2
             }
             else if (dialogResult == DialogResult.No)
             {
-                //do something else
+                //
             }
         }
         #endregion
@@ -569,7 +592,52 @@ namespace Launcher_v2
             }
             else if (dialogResult == DialogResult.No)
             {
-                //do something else
+                //
+            }
+        }
+        #endregion
+
+        #region -- Кнопка настроек --
+        private void button10_Click(object sender, EventArgs e)
+        {
+            {
+                string dirName1 = (Application.StartupPath + "/Settings//Mindustry.ru.crt");
+                string dirName = (Application.StartupPath + "/Settings//");
+                if (Directory.Exists(dirName) && File.Exists(dirName1) == true)
+                {
+                    DialogResult dialogResult = MessageBox.Show("Сейчас вам будет предложено установить сертификат безопасности Mindustry.ru \nУстановить?", "Внимание!", MessageBoxButtons.YesNo);
+                    if (dialogResult == DialogResult.Yes)
+                    {
+                        Process.Start(Application.StartupPath + "//Settings//Mindustry.ru.crt");
+                    }
+                    else
+                    {
+                        //
+                    }
+                }
+                else
+                {
+                    DialogResult dialogResult = MessageBox.Show("Лаунчер не может найти Сертификат безопасности \nХотите ли вы запустить средство устранения ошибок?", "Внимание!", MessageBoxButtons.YesNo);
+                    if (dialogResult == DialogResult.Yes)
+                    {
+
+                        if (!File.Exists("Updater.exe"))
+                        {
+                            MessageBox.Show("Лаунчер не может найти средство устранения ошибок\nПереустановите программу.", "Внимание!");
+                            Application.Exit();
+                        }
+                        else
+                        {
+                            File.Delete(Application.StartupPath + "/updater");
+                            Process.Start(Application.StartupPath + "/Updater.exe");
+                            Application.Exit();
+                        }
+                    }
+                    else if (dialogResult == DialogResult.No)
+                    {
+                        //
+                    }
+                }
             }
         }
         #endregion
@@ -612,7 +680,7 @@ namespace Launcher_v2
                     }
                     else if (dialogResult == DialogResult.No)
                     {
-                        //do something else
+                        //
                     }
                 }
             }
@@ -629,7 +697,7 @@ namespace Launcher_v2
             }
             else if (dialogResult == DialogResult.No)
             {
-                //do something else
+                //
             }
         }
         #endregion
