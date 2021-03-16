@@ -278,11 +278,11 @@ namespace Launcher_v2
 
                 var content6 = new WebClient { Encoding = Encoding.UTF8 }.DownloadString("http://update.mindustry.ru/OnlStatus/status/BBM-Server.json");
                 var result6 = content6;
-                label10.Text = result6;
+                label17.Text = result6;
 
                 var content7 = new WebClient { Encoding = Encoding.UTF8 }.DownloadString("http://update.mindustry.ru/OnlStatus/status/Attack.json");
                 var result7 = content7;
-                label10.Text = result7;
+                label21.Text = result7;
             }
             //End Check Online
 
