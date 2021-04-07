@@ -233,7 +233,7 @@ namespace Launcher_v2
         #region -- Проверить пинг и статус -- 
         private void OnlStatus_Tick(object sender, EventArgs e)
         {
-            TimerOnlStatus.Interval = 15000;
+            TimerOnlStatus.Interval = 300000;
             ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
             //Check Online
             IPStatus status = IPStatus.TimedOut;
@@ -288,7 +288,7 @@ namespace Launcher_v2
 
             //Ping
             List<string> serversList = new List<string>();
-            serversList.Add("Mindustry.ru"); //address
+            serversList.Add("EasyPlay.su"); //address
             Ping ping = new System.Net.NetworkInformation.Ping();
             PingReply pingReply = null;
 
@@ -522,7 +522,7 @@ namespace Launcher_v2
             DialogResult dialogResult = MessageBox.Show("Вы хотите перейти в Discord Mindustry.ru?", "Подтвердите действие!", MessageBoxButtons.YesNo);
             if (dialogResult == DialogResult.Yes)
             {
-                System.Diagnostics.Process.Start("https://ds.mindustry.ru/");
+                System.Diagnostics.Process.Start("https://ds.easyplay.su/");
             }
             else if (dialogResult == DialogResult.No)
             {
@@ -537,7 +537,7 @@ namespace Launcher_v2
             DialogResult dialogResult = MessageBox.Show("Вы хотите перейти перейти на сайт?", "Подтвердите действие!", MessageBoxButtons.YesNo);
             if (dialogResult == DialogResult.Yes)
             {
-                System.Diagnostics.Process.Start("https://mindustry.ru/");
+                System.Diagnostics.Process.Start("https://easyplay.su/");
             }
             else if (dialogResult == DialogResult.No)
             {
@@ -693,7 +693,7 @@ namespace Launcher_v2
             DialogResult dialogResult = MessageBox.Show("Вы хотите перейти перейти в GitHub?", "Подтвердите действие!", MessageBoxButtons.YesNo);
             if (dialogResult == DialogResult.Yes)
             {
-                System.Diagnostics.Process.Start("https://github.com/MindustryRu/Game-Launcher");
+                System.Diagnostics.Process.Start("https://github.com/EasyPlaySu/Game-Launcher");
             }
             else if (dialogResult == DialogResult.No)
             {

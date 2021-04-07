@@ -10,7 +10,7 @@
 - Buttons (Site\Discord\GitHub\Client/Launcher Repair\Maps\Mods
 - Display ping to servers
   
-For all questions, write to Discord: https://discord.mindustry.ru/
+For all questions, write to Discord: https://ds.easyplay.su/
 ![Discord Shield](https://discordapp.com/api/guilds/658670734222163989/widget.png?style=shield)
   
 </details>
@@ -25,7 +25,7 @@ For all questions, write to Discord: https://discord.mindustry.ru/
 - Кнопки (Сайт\Discord\GitHub\Ремонт клиента/лаунчера\Карты\Моды
 - Отображение пинга до серверов
 
-По всем вопросам пишите в Discord: https://discord.mindustry.ru/
+По всем вопросам пишите в Discord: https://ds.easyplay.su/
 ![Discord Shield](https://discordapp.com/api/guilds/658670734222163989/widget.png?style=shield)
   
 </details>
@@ -33,11 +33,11 @@ For all questions, write to Discord: https://discord.mindustry.ru/
 ![Logo](img/Logo_Launcher.png "Launcher screenshot")
 
 # Developers
-- [MindustryRu](https://github.com/MindustryRu) (Head Developer)
+- [EasyPlaySu](https://github.com/EasyPlaySu) (Head Developer)
 
 # Helpers
 - [Fatonndev](https://github.com/Fatonndev)
 - [MemFaceGo](https://github.com/MemFaceGo)
 
 # Discord Server Banner
-<a href="https://discord.mindustry.ru/"><img src="https://discordapp.com/api/guilds/658670734222163989/widget.png?style=banner4" alt="Discord Banner 4"/></a>
+<a href="https://ds.easyplay.su/"><img src="https://discordapp.com/api/guilds/658670734222163989/widget.png?style=banner4" alt="Discord Banner 4"/></a>
