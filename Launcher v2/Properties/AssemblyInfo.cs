@@ -5,13 +5,13 @@ using System.Runtime.InteropServices;
 // General Information about an assembly is controlled through the following 
 // set of attributes. Change these attribute values to modify the information
 // associated with an assembly.
-[assembly: AssemblyTitle("Launcher")]
-[assembly: AssemblyDescription("Game Launcher Mindustry")]
+[assembly: AssemblyTitle("Mindustry Game Launcher")]
+[assembly: AssemblyDescription("Mindustry Game Launcher")]
 [assembly: AssemblyConfiguration("")]
-[assembly: AssemblyCompany("Mindustry.ru")]
+[assembly: AssemblyCompany("EasyPlay.su")]
 [assembly: AssemblyProduct("Launcher")]
-[assembly: AssemblyCopyright("Mindustry.ru Copyright ©  2020")]
-[assembly: AssemblyTrademark("Mindustry.ru")]
+[assembly: AssemblyCopyright("EasyPlay.su Copyright ©  2020")]
+[assembly: AssemblyTrademark("EasyPlay.su")]
 [assembly: AssemblyCulture("")]
 
 // Setting ComVisible to false makes the types in this assembly not visible 

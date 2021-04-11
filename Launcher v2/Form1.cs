@@ -451,7 +451,6 @@ namespace Launcher_v2
             {
                 if (clsProcess.ProcessName.Contains(name))
                 {
-
                     return true;
                 }
 
@@ -519,7 +518,7 @@ namespace Launcher_v2
         #region -- Кнопка Discord --
         private void button2_Click(object sender, EventArgs e)
         {
-            DialogResult dialogResult = MessageBox.Show("Вы хотите перейти в Discord Mindustry.ru?", "Подтвердите действие!", MessageBoxButtons.YesNo);
+            DialogResult dialogResult = MessageBox.Show("Вы хотите перейти в Discord EasyPlay?", "Подтвердите действие!", MessageBoxButtons.YesNo);
             if (dialogResult == DialogResult.Yes)
             {
                 System.Diagnostics.Process.Start("https://ds.easyplay.su/");
