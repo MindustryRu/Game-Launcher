@@ -230,10 +230,10 @@ namespace Launcher_v2
         }
         #endregion
 
-        #region -- Проверить пинг и статус -- 
+        #region -- Провеьрить пинг и статус -- 
         private void OnlStatus_Tick(object sender, EventArgs e)
         {
-            TimerOnlStatus.Interval = 300000;
+            TimerOnlStatus.Interval = 15000;
             ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
             //Check Online
             IPStatus status = IPStatus.TimedOut;
@@ -302,141 +302,118 @@ namespace Launcher_v2
                 }
 
             }
-            //End ping
+            //End ping 
 
             //Check online Status Hub
-            using (TcpClient tcpClient = new TcpClient())
+            var client = new TcpClient();
+            if (client.ConnectAsync("37.46.130.209", 6567).Wait(50))
             {
-                try
-                {
-                    tcpClient.Connect("37.46.130.209", 6567);
-                    pictureBox1.Image = global::Launcher_v2.Properties.Resources.Sonline;
-                    label2.Text = "Сервер включен.";
-                }
-                catch (Exception)
-                {
-                    pictureBox1.Image = global::Launcher_v2.Properties.Resources.Soffline;
-                    label2.Text = "Сервер выключен.";
-                }
+                pictureBox1.Image = global::Launcher_v2.Properties.Resources.Sonline;
+                label2.Text = "Сервер включен.";
+            }
+            else
+            {
+                pictureBox1.Image = global::Launcher_v2.Properties.Resources.Soffline;
+                label2.Text = "Сервер выключен.";
             }
             //End Check online Status
 
+            
             //Check online Status Survival
-            using (TcpClient tcpClient = new TcpClient())
+            var client1 = new TcpClient();
+            if (client1.ConnectAsync("62.109.5.203", 6567).Wait(50))
             {
-                try
-                {
-                    tcpClient.Connect("62.109.5.203", 6567);
-                    pictureBox2.Image = global::Launcher_v2.Properties.Resources.Sonline;
-                    label4.Text = "Сервер включен.";
-                }
-                catch (Exception)
-                {
-                    pictureBox2.Image = global::Launcher_v2.Properties.Resources.Soffline;
-                    label4.Text = "Сервер выключен.";
-                }
+                pictureBox2.Image = global::Launcher_v2.Properties.Resources.Sonline;
+                label4.Text = "Сервер включен.";
+            }
+            else
+            {
+                pictureBox2.Image = global::Launcher_v2.Properties.Resources.Soffline;
+                label4.Text = "Сервер выключен.";
             }
             //End Check online Status
 
             //Check online Status PvP
-            using (TcpClient tcpClient = new TcpClient())
+            var client2 = new TcpClient();
+            if (client2.ConnectAsync("62.109.5.203", 6577).Wait(50))
             {
-                try
-                {
-                    tcpClient.Connect("62.109.5.203", 6577);
-                    pictureBox3.Image = global::Launcher_v2.Properties.Resources.Sonline;
-                    label6.Text = "Сервер включен.";
-                }
-                catch (Exception)
-                {
-                    pictureBox3.Image = global::Launcher_v2.Properties.Resources.Soffline;
-                    label6.Text = "Сервер выключен.";
-                }
+                pictureBox3.Image = global::Launcher_v2.Properties.Resources.Sonline;
+                label6.Text = "Сервер включен.";
+            }
+            else
+            {
+                pictureBox3.Image = global::Launcher_v2.Properties.Resources.Soffline;
+                label6.Text = "Сервер выключен.";
             }
             //End Check online Status
 
             //Check online Status hex
-            using (TcpClient tcpClient = new TcpClient())
+            var client3 = new TcpClient();
+            if (client3.ConnectAsync("62.109.5.203", 6676).Wait(50))
             {
-                try
-                {
-                    tcpClient.Connect("62.109.5.203", 6676);
-                    pictureBox4.Image = global::Launcher_v2.Properties.Resources.Sonline;
-                    label7.Text = "Сервер включен.";
-                }
-                catch (Exception)
-                {
-                    pictureBox4.Image = global::Launcher_v2.Properties.Resources.Soffline;
-                    label7.Text = "Сервер выключен.";
-                }
+                pictureBox4.Image = global::Launcher_v2.Properties.Resources.Sonline;
+                label7.Text = "Сервер включен.";
+            }
+            else
+            {
+                pictureBox4.Image = global::Launcher_v2.Properties.Resources.Soffline;
+                label7.Text = "Сервер выключен.";
             }
             //End Check online Status
 
             //Check online Status Td
-            using (TcpClient tcpClient = new TcpClient())
+            var client4 = new TcpClient();
+            if (client4.ConnectAsync("62.109.5.203", 6597).Wait(50))
             {
-                try
-                {
-                    tcpClient.Connect("62.109.5.203", 6597);
-                    pictureBox5.Image = global::Launcher_v2.Properties.Resources.Sonline;
-                    label8.Text = "Сервер включен.";
-                }
-                catch (Exception)
-                {
-                    pictureBox5.Image = global::Launcher_v2.Properties.Resources.Soffline;
-                    label8.Text = "Сервер выключен.";
-                }
+                pictureBox5.Image = global::Launcher_v2.Properties.Resources.Sonline;
+                label8.Text = "Сервер включен.";
+            }
+            else
+            {
+                pictureBox5.Image = global::Launcher_v2.Properties.Resources.Soffline;
+                label8.Text = "Сервер выключен.";
             }
             //End Check online Status
 
             //Check online Status SandBox
-            using (TcpClient tcpClient = new TcpClient())
+            var client5 = new TcpClient();
+            if (client5.ConnectAsync("62.109.5.203", 6667).Wait(50))
             {
-                try
-                {
-                    tcpClient.Connect("62.109.5.203", 6667);
-                    pictureBox7.Image = global::Launcher_v2.Properties.Resources.Sonline;
-                    label9.Text = "Сервер включен.";
-                }
-                catch (Exception)
-                {
-                    pictureBox7.Image = global::Launcher_v2.Properties.Resources.Soffline;
-                    label9.Text = "Сервер выключен.";
-                }
+                pictureBox7.Image = global::Launcher_v2.Properties.Resources.Sonline;
+                label9.Text = "Сервер включен.";
+            }
+            else
+            {
+                pictureBox7.Image = global::Launcher_v2.Properties.Resources.Soffline;
+                label9.Text = "Сервер выключен.";
             }
             //End Check online Status
 
             //Check online Status BBM-Server
-            using (TcpClient tcpClient = new TcpClient())
+            var client6 = new TcpClient();
+            if (client6.ConnectAsync("62.109.5.203", 7777).Wait(50))
             {
-                try
-                {
-                    tcpClient.Connect("62.109.5.203", 7777);
-                    pictureBox8.Image = global::Launcher_v2.Properties.Resources.Sonline;
-                    label10.Text = "Сервер включен.";
-                }
-                catch (Exception)
-                {
-                    pictureBox8.Image = global::Launcher_v2.Properties.Resources.Soffline;
-                    label10.Text = "Сервер выключен.";
-                }
+                pictureBox8.Image = global::Launcher_v2.Properties.Resources.Sonline;
+                label10.Text = "Сервер включен.";
+            }
+            else
+            {
+                pictureBox8.Image = global::Launcher_v2.Properties.Resources.Soffline;
+                label10.Text = "Сервер выключен.";
             }
             //End Check online Status
 
             //Check online Status Attack
-            using (TcpClient tcpClient = new TcpClient())
+            var client7 = new TcpClient();
+            if (client7.ConnectAsync("62.109.5.203", 6587).Wait(50))
             {
-                try
-                {
-                    tcpClient.Connect("62.109.5.203", 6587);
-                    pictureBox9.Image = global::Launcher_v2.Properties.Resources.Sonline;
-                    label20.Text = "Сервер включен.";
-                }
-                catch (Exception)
-                {
-                    pictureBox9.Image = global::Launcher_v2.Properties.Resources.Soffline;
-                    label20.Text = "Сервер выключен.";
-                }
+                pictureBox9.Image = global::Launcher_v2.Properties.Resources.Sonline;
+                label20.Text = "Сервер включен.";
+            }
+            else
+            {
+                pictureBox9.Image = global::Launcher_v2.Properties.Resources.Soffline;
+                label20.Text = "Сервер выключен.";
             }
             //End Check online Status
 
@@ -476,7 +453,7 @@ namespace Launcher_v2
             catch { }
             if (status != IPStatus.Success)
             {
-                DialogResult dialogResult = MessageBox.Show("У лаунчера нет доступа к интернету для проверки обновлений. \nПродолжить работу автономно?", "Внимание!", MessageBoxButtons.YesNo);
+                DialogResult dialogResult = MessageBox.Show("У лаунчера нет доступа к севреру обновлений.\nСервер обновлений на Тех.Работах и будет доступен в ближайшее время.\n\nПродолжить работу автономно?", "Внимание!", MessageBoxButtons.YesNo);
                 if (dialogResult == DialogResult.Yes)
                 {
                     pictureBox6.BackgroundImage = global::Launcher_v2.Properties.Resources.server_offline;
@@ -497,7 +474,7 @@ namespace Launcher_v2
             t.SetToolTip(button1, "Свернуть лаунчер");
             t.SetToolTip(button5, "Закрыть лаунчер");
             t.SetToolTip(pictureBox6, "Статус подключения к серверу обновлений.");
-            t.SetToolTip(label18, "Ping до серверов Mindustry.ru");         
+            t.SetToolTip(label18, "Ping до серверов EasyPlay.su");         
         }
         #endregion
 
