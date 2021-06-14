@@ -22,6 +22,7 @@ namespace Launcher_v2
         {
             InitializeComponent();
             button5.Enabled = false;
+            button11.Enabled = false;
             label3.Visible = false;
             timer1.Enabled = false;
             this.FormBorderStyle = FormBorderStyle.None;
@@ -186,6 +187,7 @@ namespace Launcher_v2
             progressBar1.Maximum = 100;
             progressBar1.Value = 0;
             button5.Enabled = true;
+            button11.Enabled = true;
             button10.Enabled = true;
             label19.Visible = false;
             this.downloadLbl.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
@@ -306,7 +308,7 @@ namespace Launcher_v2
 
             //Check online Status Hub
             var client = new TcpClient();
-            if (client.ConnectAsync("37.46.130.209", 6567).Wait(50))
+            if (client.ConnectAsync("EasyPlay.su", 6567).Wait(70))
             {
                 pictureBox1.Image = global::Launcher_v2.Properties.Resources.Sonline;
                 label2.Text = "Сервер включен.";
@@ -321,7 +323,7 @@ namespace Launcher_v2
             
             //Check online Status Survival
             var client1 = new TcpClient();
-            if (client1.ConnectAsync("62.109.5.203", 6567).Wait(50))
+            if (client1.ConnectAsync("S.EasyPlay.su", 6567).Wait(75))
             {
                 pictureBox2.Image = global::Launcher_v2.Properties.Resources.Sonline;
                 label4.Text = "Сервер включен.";
@@ -335,7 +337,7 @@ namespace Launcher_v2
 
             //Check online Status PvP
             var client2 = new TcpClient();
-            if (client2.ConnectAsync("62.109.5.203", 6577).Wait(50))
+            if (client2.ConnectAsync("S.EasyPlay.su", 6577).Wait(80))
             {
                 pictureBox3.Image = global::Launcher_v2.Properties.Resources.Sonline;
                 label6.Text = "Сервер включен.";
@@ -349,7 +351,7 @@ namespace Launcher_v2
 
             //Check online Status hex
             var client3 = new TcpClient();
-            if (client3.ConnectAsync("62.109.5.203", 6676).Wait(50))
+            if (client3.ConnectAsync("S.EasyPlay.su", 6676).Wait(85))
             {
                 pictureBox4.Image = global::Launcher_v2.Properties.Resources.Sonline;
                 label7.Text = "Сервер включен.";
@@ -363,7 +365,7 @@ namespace Launcher_v2
 
             //Check online Status Td
             var client4 = new TcpClient();
-            if (client4.ConnectAsync("62.109.5.203", 6597).Wait(50))
+            if (client4.ConnectAsync("S.EasyPlay.su", 6597).Wait(90))
             {
                 pictureBox5.Image = global::Launcher_v2.Properties.Resources.Sonline;
                 label8.Text = "Сервер включен.";
@@ -377,7 +379,7 @@ namespace Launcher_v2
 
             //Check online Status SandBox
             var client5 = new TcpClient();
-            if (client5.ConnectAsync("62.109.5.203", 6667).Wait(50))
+            if (client5.ConnectAsync("S.EasyPlay.su", 6667).Wait(95))
             {
                 pictureBox7.Image = global::Launcher_v2.Properties.Resources.Sonline;
                 label9.Text = "Сервер включен.";
@@ -391,7 +393,7 @@ namespace Launcher_v2
 
             //Check online Status BBM-Server
             var client6 = new TcpClient();
-            if (client6.ConnectAsync("62.109.5.203", 7777).Wait(50))
+            if (client6.ConnectAsync("S.EasyPlay.su", 7777).Wait(100))
             {
                 pictureBox8.Image = global::Launcher_v2.Properties.Resources.Sonline;
                 label10.Text = "Сервер включен.";
@@ -405,7 +407,7 @@ namespace Launcher_v2
 
             //Check online Status Attack
             var client7 = new TcpClient();
-            if (client7.ConnectAsync("62.109.5.203", 6587).Wait(50))
+            if (client7.ConnectAsync("S.EasyPlay.su", 6587).Wait(105))
             {
                 pictureBox9.Image = global::Launcher_v2.Properties.Resources.Sonline;
                 label20.Text = "Сервер включен.";
@@ -576,6 +578,7 @@ namespace Launcher_v2
         #region -- Кнопка настроек --
         private void button10_Click(object sender, EventArgs e)
         {
+            /*       ------Функция временно отключена------
             {
                 string dirName1 = (Application.StartupPath + "/Settings//Mindustry.ru.crt");
                 string dirName = (Application.StartupPath + "/Settings//");
@@ -615,6 +618,7 @@ namespace Launcher_v2
                     }
                 }
             }
+            */
         }
         #endregion
 
@@ -678,6 +682,57 @@ namespace Launcher_v2
         }
         #endregion
 
+        #region -- Кнопка Anti-Grief --
+        private void button11_Click(object sender, EventArgs e)
+        {
+            DialogResult dialogResult = MessageBox.Show("Вы хотите запустить Mindustry Anti-Grief клиент?", "Подтвердите действие!", MessageBoxButtons.YesNo);
+            if (dialogResult == DialogResult.Yes)
+            {
+                if (IsProcessOpen("Mindustry"))
+                {
+                    MessageBox.Show("Клиент уже запущен!");
+                }
+                else
+                {
+                    string dirName1 = (Application.StartupPath + "/Mindustry//A-G//Mindustry.exe");
+                    string dirName = (Application.StartupPath + "/Mindustry//A-G//");
+                    if (Directory.Exists(dirName) && File.Exists(dirName1) == true)
+                    {
+                        Process.Start(Application.StartupPath + "//Mindustry//A-G//Mindustry.exe");
+                        Application.Exit();
+                    }
+                    else
+                    {
+                        DialogResult dialogResult1 = MessageBox.Show("Лаунчер не может найти каталог игры \nХотите ли вы запустить средство устранения ошибок?", "Внимание!", MessageBoxButtons.YesNo);
+                        if (dialogResult1 == DialogResult.Yes)
+                        {
+
+                            if (!File.Exists("Updater.exe"))
+                            {
+                                MessageBox.Show("Лаунчер не может найти средство устранения ошибок\nПереустановите программу.", "Внимание!");
+                                Application.Exit();
+                            }
+                            else
+                            {
+                                File.Delete(Application.StartupPath + "/version");
+                                Process.Start(Application.StartupPath + "/Updater.exe");
+                                Application.Exit();
+                            }
+                        }
+                        else if (dialogResult == DialogResult.No)
+                        {
+                            //
+                        }
+                    }
+                }
+            }
+            else if (dialogResult == DialogResult.No)
+            {
+                //
+            }
+        }
+        #endregion
+
         #endregion
 
         #region -- Закругление progressBar --
@@ -695,5 +750,6 @@ namespace Launcher_v2
             control.Region = new Region(path);
         }
         #endregion
+
     }
 }
