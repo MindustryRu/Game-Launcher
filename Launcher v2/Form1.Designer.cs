@@ -676,7 +676,7 @@
             this.button11.Cursor = System.Windows.Forms.Cursors.Hand;
             this.button11.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
             this.button11.ForeColor = System.Drawing.Color.Transparent;
-            this.button11.Image = global::Launcher_v2.Properties.Resources.admin;
+            this.button11.Image = global::Launcher_v2.Properties.Resources.A_G;
             this.button11.Location = new System.Drawing.Point(960, 433);
             this.button11.Name = "button11";
             this.button11.Size = new System.Drawing.Size(28, 25);

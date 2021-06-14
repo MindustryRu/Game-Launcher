@@ -63,9 +63,9 @@ namespace Launcher_v2.Properties {
         /// <summary>
         ///   Поиск локализованного ресурса типа System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap admin {
+        internal static System.Drawing.Bitmap A_G {
             get {
-                object obj = ResourceManager.GetObject("admin", resourceCulture);
+                object obj = ResourceManager.GetObject("A-G", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
