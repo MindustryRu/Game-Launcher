@@ -232,7 +232,7 @@ namespace Launcher_v2
         }
         #endregion
 
-        #region -- Провеьрить пинг и статус -- 
+        #region -- Проверить пинг и статус -- 
         private void OnlStatus_Tick(object sender, EventArgs e)
         {
             TimerOnlStatus.Interval = 15000;
@@ -703,7 +703,7 @@ namespace Launcher_v2
                     }
                     else
                     {
-                        DialogResult dialogResult1 = MessageBox.Show("Лаунчер не может найти каталог игры \nХотите ли вы запустить средство устранения ошибок?", "Внимание!", MessageBoxButtons.YesNo);
+                        DialogResult dialogResult1 = MessageBox.Show("Лаунчер не может найти каталог клиента \nХотите ли вы запустить средство устранения ошибок?", "Внимание!", MessageBoxButtons.YesNo);
                         if (dialogResult1 == DialogResult.Yes)
                         {
 
@@ -714,7 +714,7 @@ namespace Launcher_v2
                             }
                             else
                             {
-                                File.Delete(Application.StartupPath + "/version");
+                                File.Delete(Application.StartupPath + "/updater");
                                 Process.Start(Application.StartupPath + "/Updater.exe");
                                 Application.Exit();
                             }
