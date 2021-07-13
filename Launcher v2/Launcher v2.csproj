@@ -169,9 +169,13 @@
   <ItemGroup>
     <Content Include="favicon.ico" />
     <Content Include="Ionic.Zip.dll" />
-    <None Include="Resources\alpha-cell.png" />
-    <None Include="Resources\admin.png" />
     <None Include="Resources\Bg.png" />
+    <None Include="Resources\a_g.png" />
+    <None Include="Resources\a-g.png" />
+    <None Include="Resources\a-g1.png" />
+    <None Include="Resources\admin.png" />
+    <None Include="Resources\Scs.png" />
+    <None Include="Resources\alpha-cell.png" />
     <None Include="Resources\Soffline.png" />
     <None Include="Resources\Sonline.png" />
     <None Include="Resources\waiting.png" />

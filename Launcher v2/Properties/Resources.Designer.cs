@@ -63,9 +63,9 @@ namespace Launcher_v2.Properties {
         /// <summary>
         ///   Поиск локализованного ресурса типа System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap A_G {
+        internal static System.Drawing.Bitmap a_g {
             get {
-                object obj = ResourceManager.GetObject("A-G", resourceCulture);
+                object obj = ResourceManager.GetObject("a_g", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -76,6 +76,16 @@ namespace Launcher_v2.Properties {
         internal static System.Drawing.Bitmap Bg {
             get {
                 object obj = ResourceManager.GetObject("Bg", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Поиск локализованного ресурса типа System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap Scs {
+            get {
+                object obj = ResourceManager.GetObject("Scs", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }

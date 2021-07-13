@@ -19,18 +19,24 @@ For all questions, write to Discord: https://ds.easyplay.su/
   <summary>RUS Description</summary>
   
 - Автообновление клиента
-- Время\Дата\IP\Новости
+- Время\Дата\Новости
 - Отображение онлайна сервера
 - Отображение статуса сервера(Включен\Выключен)
 - Кнопки (Сайт\Discord\GitHub\Ремонт клиента/лаунчера\Карты\Моды
 - Отображение пинга до серверов
+- List of the best servers in Mindustry
 
 По всем вопросам пишите в Discord: https://ds.easyplay.su/
 ![Discord Shield](https://discordapp.com/api/guilds/658670734222163989/widget.png?style=shield)
   
 </details>
 
-![Logo](img/Logo_Launcher.png "Launcher screenshot")
+#ВАЖНО!  |  ATTENTION!
+[RUS]
+- Для добавления своего сервера в лаунчер вы должны иметь Hub
+
+[ENG]
+- To add your server to the launcher, you must have a Hub
 
 # Developers
 - [EasyPlaySu](https://github.com/EasyPlaySu) (Head Developer)

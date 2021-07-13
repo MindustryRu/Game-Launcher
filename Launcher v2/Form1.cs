@@ -28,6 +28,26 @@ namespace Launcher_v2
             this.FormBorderStyle = FormBorderStyle.None;
             this.MouseDown += new MouseEventHandler(Form1_MouseDown);
             backgroundWorker1.RunWorkerAsync();
+            button3.FlatAppearance.BorderSize = 0;
+            button3.FlatStyle = FlatStyle.Flat;
+            button2.FlatAppearance.BorderSize = 0;
+            button2.FlatStyle = FlatStyle.Flat;
+            button9.FlatAppearance.BorderSize = 0;
+            button9.FlatStyle = FlatStyle.Flat;
+            button4.FlatAppearance.BorderSize = 0;
+            button4.FlatStyle = FlatStyle.Flat;
+            button7.FlatAppearance.BorderSize = 0;
+            button7.FlatStyle = FlatStyle.Flat;
+            button6.FlatAppearance.BorderSize = 0;
+            button6.FlatStyle = FlatStyle.Flat;
+            button10.FlatAppearance.BorderSize = 0;
+            button10.FlatStyle = FlatStyle.Flat;
+            button1.FlatAppearance.BorderSize = 0;
+            button1.FlatStyle = FlatStyle.Flat;
+            button5.FlatAppearance.BorderSize = 0;
+            button5.FlatStyle = FlatStyle.Flat;
+            button11.FlatAppearance.BorderSize = 0;
+            button11.FlatStyle = FlatStyle.Flat;
         }
         #endregion
 
@@ -215,7 +235,7 @@ namespace Launcher_v2
             if (progressBar1.Maximum == progressBar1.Value)
             {
                 timer1.Enabled = false;
-                //progressBar1.Visible = false; //Видимость progressBar После загрузки и проверки файлов
+                progressBar1.Visible = false; //Видимость progressBar После загрузки и проверки файлов
                 downloadLbl.Visible = true;
                 label3.Visible = false;
                 button8.Enabled = true;
@@ -235,7 +255,7 @@ namespace Launcher_v2
         #region -- Проверить пинг и статус -- 
         private void OnlStatus_Tick(object sender, EventArgs e)
         {
-            TimerOnlStatus.Interval = 15000;
+            TimerOnlStatus.Interval = 20000;
             ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
             //Check Online
             IPStatus status = IPStatus.TimedOut;
@@ -254,35 +274,35 @@ namespace Launcher_v2
             else
             {
                 pictureBox6.BackgroundImage = global::Launcher_v2.Properties.Resources.server_online;
-                var content = new WebClient { Encoding = Encoding.UTF8 }.DownloadString("http://update.mindustry.ru/OnlStatus/status/Hub.json");
+                var content = new WebClient { Encoding = Encoding.UTF8 }.DownloadString("http://update.mindustry.ru/OnlStatus/status/EasyPlay.su.json");
                 var result = content;
                 label11.Text = result;
 
-                var content1 = new WebClient { Encoding = Encoding.UTF8 }.DownloadString("http://update.mindustry.ru/OnlStatus/status/Survival.json");
+                var content1 = new WebClient { Encoding = Encoding.UTF8 }.DownloadString("http://update.mindustry.ru/OnlStatus/status/ComingSoon.json");
                 var result1 = content1;
                 label12.Text = result1;
 
-                var content2 = new WebClient { Encoding = Encoding.UTF8 }.DownloadString("http://update.mindustry.ru/OnlStatus/status/PvP.json");
+                var content2 = new WebClient { Encoding = Encoding.UTF8 }.DownloadString("http://update.mindustry.ru/OnlStatus/status/ComingSoon.json");
                 var result2 = content2;
                 label13.Text = result2;
 
-                var content3 = new WebClient { Encoding = Encoding.UTF8 }.DownloadString("http://update.mindustry.ru/OnlStatus/status/Hex.json");
+                var content3 = new WebClient { Encoding = Encoding.UTF8 }.DownloadString("http://update.mindustry.ru/OnlStatus/status/ComingSoon.json");
                 var result3 = content3;
                 label14.Text = result3;
 
-                var content4 = new WebClient { Encoding = Encoding.UTF8 }.DownloadString("http://update.mindustry.ru/OnlStatus/status/TowerDefence.json");
+                var content4 = new WebClient { Encoding = Encoding.UTF8 }.DownloadString("http://update.mindustry.ru/OnlStatus/status/ComingSoon.json");
                 var result4 = content4;
                 label15.Text = result4;
 
-                var content5 = new WebClient { Encoding = Encoding.UTF8 }.DownloadString("http://update.mindustry.ru/OnlStatus/status/SandBox.json");
+                var content5 = new WebClient { Encoding = Encoding.UTF8 }.DownloadString("http://update.mindustry.ru/OnlStatus/status/ComingSoon.json");
                 var result5 = content5;
                 label16.Text = result5;
 
-                var content6 = new WebClient { Encoding = Encoding.UTF8 }.DownloadString("http://update.mindustry.ru/OnlStatus/status/BBM-Server.json");
+                var content6 = new WebClient { Encoding = Encoding.UTF8 }.DownloadString("http://update.mindustry.ru/OnlStatus/status/ComingSoon.json");
                 var result6 = content6;
                 label17.Text = result6;
 
-                var content7 = new WebClient { Encoding = Encoding.UTF8 }.DownloadString("http://update.mindustry.ru/OnlStatus/status/Attack.json");
+                var content7 = new WebClient { Encoding = Encoding.UTF8 }.DownloadString("http://update.mindustry.ru/OnlStatus/status/ComingSoon.json");
                 var result7 = content7;
                 label21.Text = result7;
             }
@@ -306,9 +326,9 @@ namespace Launcher_v2
             }
             //End ping 
 
-            //Check online Status Hub
+            //Check online Status EasyPlay.Su
             var client = new TcpClient();
-            if (client.ConnectAsync("EasyPlay.su", 6567).Wait(70))
+            if (client.ConnectAsync("EasyPlay.su", 6567).Wait(200))
             {
                 pictureBox1.Image = global::Launcher_v2.Properties.Resources.Sonline;
                 label2.Text = "Сервер включен.";
@@ -323,98 +343,98 @@ namespace Launcher_v2
             
             //Check online Status Survival
             var client1 = new TcpClient();
-            if (client1.ConnectAsync("S.EasyPlay.su", 6567).Wait(75))
+            if (client1.ConnectAsync("127.0.0.1", 1).Wait(0))
             {
-                pictureBox2.Image = global::Launcher_v2.Properties.Resources.Sonline;
+                pictureBox2.Image = global::Launcher_v2.Properties.Resources.Scs;
                 label4.Text = "Сервер включен.";
             }
             else
             {
-                pictureBox2.Image = global::Launcher_v2.Properties.Resources.Soffline;
+                pictureBox2.Image = global::Launcher_v2.Properties.Resources.Scs;
                 label4.Text = "Сервер выключен.";
             }
             //End Check online Status
 
             //Check online Status PvP
             var client2 = new TcpClient();
-            if (client2.ConnectAsync("S.EasyPlay.su", 6577).Wait(80))
+            if (client2.ConnectAsync("127.0.0.1", 1).Wait(0))
             {
-                pictureBox3.Image = global::Launcher_v2.Properties.Resources.Sonline;
+                pictureBox3.Image = global::Launcher_v2.Properties.Resources.Scs;
                 label6.Text = "Сервер включен.";
             }
             else
             {
-                pictureBox3.Image = global::Launcher_v2.Properties.Resources.Soffline;
+                pictureBox3.Image = global::Launcher_v2.Properties.Resources.Scs;
                 label6.Text = "Сервер выключен.";
             }
             //End Check online Status
 
             //Check online Status hex
             var client3 = new TcpClient();
-            if (client3.ConnectAsync("S.EasyPlay.su", 6676).Wait(85))
+            if (client3.ConnectAsync("127.0.0.1", 1).Wait(0))
             {
-                pictureBox4.Image = global::Launcher_v2.Properties.Resources.Sonline;
+                pictureBox4.Image = global::Launcher_v2.Properties.Resources.Scs;
                 label7.Text = "Сервер включен.";
             }
             else
             {
-                pictureBox4.Image = global::Launcher_v2.Properties.Resources.Soffline;
+                pictureBox4.Image = global::Launcher_v2.Properties.Resources.Scs;
                 label7.Text = "Сервер выключен.";
             }
             //End Check online Status
 
             //Check online Status Td
             var client4 = new TcpClient();
-            if (client4.ConnectAsync("S.EasyPlay.su", 6597).Wait(90))
+            if (client4.ConnectAsync("127.0.0.1", 1).Wait(0))
             {
-                pictureBox5.Image = global::Launcher_v2.Properties.Resources.Sonline;
+                pictureBox5.Image = global::Launcher_v2.Properties.Resources.Scs;
                 label8.Text = "Сервер включен.";
             }
             else
             {
-                pictureBox5.Image = global::Launcher_v2.Properties.Resources.Soffline;
+                pictureBox5.Image = global::Launcher_v2.Properties.Resources.Scs;
                 label8.Text = "Сервер выключен.";
             }
             //End Check online Status
 
             //Check online Status SandBox
             var client5 = new TcpClient();
-            if (client5.ConnectAsync("S.EasyPlay.su", 6667).Wait(95))
+            if (client5.ConnectAsync("127.0.0.1", 1).Wait(0))
             {
-                pictureBox7.Image = global::Launcher_v2.Properties.Resources.Sonline;
+                pictureBox7.Image = global::Launcher_v2.Properties.Resources.Scs;
                 label9.Text = "Сервер включен.";
             }
             else
             {
-                pictureBox7.Image = global::Launcher_v2.Properties.Resources.Soffline;
+                pictureBox7.Image = global::Launcher_v2.Properties.Resources.Scs;
                 label9.Text = "Сервер выключен.";
             }
             //End Check online Status
 
             //Check online Status BBM-Server
             var client6 = new TcpClient();
-            if (client6.ConnectAsync("S.EasyPlay.su", 7777).Wait(100))
+            if (client6.ConnectAsync("127.0.0.1", 1).Wait(0))
             {
-                pictureBox8.Image = global::Launcher_v2.Properties.Resources.Sonline;
+                pictureBox8.Image = global::Launcher_v2.Properties.Resources.Scs;
                 label10.Text = "Сервер включен.";
             }
             else
             {
-                pictureBox8.Image = global::Launcher_v2.Properties.Resources.Soffline;
+                pictureBox8.Image = global::Launcher_v2.Properties.Resources.Scs;
                 label10.Text = "Сервер выключен.";
             }
             //End Check online Status
 
             //Check online Status Attack
             var client7 = new TcpClient();
-            if (client7.ConnectAsync("S.EasyPlay.su", 6587).Wait(105))
+            if (client7.ConnectAsync("127.0.0.1", 1).Wait(0))
             {
-                pictureBox9.Image = global::Launcher_v2.Properties.Resources.Sonline;
+                pictureBox9.Image = global::Launcher_v2.Properties.Resources.Scs;
                 label20.Text = "Сервер включен.";
             }
             else
             {
-                pictureBox9.Image = global::Launcher_v2.Properties.Resources.Soffline;
+                pictureBox9.Image = global::Launcher_v2.Properties.Resources.Scs;
                 label20.Text = "Сервер выключен.";
             }
             //End Check online Status
@@ -455,7 +475,7 @@ namespace Launcher_v2
             catch { }
             if (status != IPStatus.Success)
             {
-                DialogResult dialogResult = MessageBox.Show("У лаунчера нет доступа к севреру обновлений.\nСервер обновлений на Тех.Работах и будет доступен в ближайшее время.\n\nПродолжить работу автономно?", "Внимание!", MessageBoxButtons.YesNo);
+                DialogResult dialogResult = MessageBox.Show("У лаунчера нет доступа к севреру обновлений.\nПроверьте подключение к интернету\nИли свяжитесь с Админитрацией в Discord\nКанал: 🎮┇game-launcher\n\n\nПродолжить работу автономно?", "Внимание!", MessageBoxButtons.YesNo, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button1);
                 if (dialogResult == DialogResult.Yes)
                 {
                     pictureBox6.BackgroundImage = global::Launcher_v2.Properties.Resources.server_offline;
@@ -482,15 +502,65 @@ namespace Launcher_v2
 
         #region -- Кнопки --
 
-        #region -- Кнопка Закрыть\Свернуть лаунчер --
+        #region -- Кнопка Свернуть лаунчер --
+        private void button1_Click(object sender, EventArgs e)
+        {
+            this.WindowState = FormWindowState.Minimized;
+        }
+        private void button1_MouseEnter(object sender, EventArgs e)
+        {
+            button1.FlatAppearance.BorderSize = 1;
+            button1.FlatStyle = FlatStyle.Popup;
+        }
+
+        private void button1_MouseLeave(object sender, EventArgs e)
+        {
+            button1.FlatAppearance.BorderSize = 0;
+            button1.FlatStyle = FlatStyle.Flat;
+        }
+        #endregion
+
+        #region -- Кнопка Закрыть лаунчер --
         private void button5_Click(object sender, EventArgs e)
         {
             Application.Exit();
         }
-
-        private void button1_Click(object sender, EventArgs e)
+        private void button5_MouseEnter(object sender, EventArgs e)
         {
-            this.WindowState = FormWindowState.Minimized;
+            button5.FlatAppearance.BorderSize = 1;
+            button5.FlatStyle = FlatStyle.Popup;
+        }
+
+        private void button5_MouseLeave(object sender, EventArgs e)
+        {
+            button5.FlatAppearance.BorderSize = 0;
+            button5.FlatStyle = FlatStyle.Flat;
+        }
+        #endregion
+
+        #region -- Кнопка Сайт --
+        private void button3_Click(object sender, EventArgs e)
+        {
+            DialogResult dialogResult = MessageBox.Show("Вы хотите перейти перейти на сайт?", "Подтвердите действие!", MessageBoxButtons.YesNo);
+            if (dialogResult == DialogResult.Yes)
+            {
+                System.Diagnostics.Process.Start("https://easyplay.su/");
+            }
+            else if (dialogResult == DialogResult.No)
+            {
+                //
+            }
+        }
+        private void button3_MouseEnter(object sender, EventArgs e)
+        {
+            button3.FlatAppearance.BorderSize = 1;
+            button3.FlatStyle = FlatStyle.Popup;
+        }
+
+        private void button3_MouseLeave(object sender, EventArgs e)
+        {
+            button3.FlatAppearance.BorderSize = 0;
+            button3.FlatStyle = FlatStyle.Flat;
         }
         #endregion
 
@@ -507,20 +577,16 @@ namespace Launcher_v2
                 //
             }
         }
-        #endregion
-
-        #region -- Кнопка Сайт --
-        private void button3_Click(object sender, EventArgs e)
+        private void button2_MouseEnter(object sender, EventArgs e)
         {
-            DialogResult dialogResult = MessageBox.Show("Вы хотите перейти перейти на сайт?", "Подтвердите действие!", MessageBoxButtons.YesNo);
-            if (dialogResult == DialogResult.Yes)
-            {
-                System.Diagnostics.Process.Start("https://easyplay.su/");
-            }
-            else if (dialogResult == DialogResult.No)
-            {
-                //
-            }
+            button2.FlatAppearance.BorderSize = 1;
+            button2.FlatStyle = FlatStyle.Popup;
+        }
+
+        private void button2_MouseLeave(object sender, EventArgs e)
+        {
+            button2.FlatAppearance.BorderSize = 0;
+            button2.FlatStyle = FlatStyle.Flat;
         }
         #endregion
 
@@ -539,6 +605,17 @@ namespace Launcher_v2
                 }
             }
         }
+        private void button7_MouseEnter(object sender, EventArgs e)
+        {
+            button7.FlatAppearance.BorderSize = 1;
+            button7.FlatStyle = FlatStyle.Popup;
+        }
+
+        private void button7_MouseLeave(object sender, EventArgs e)
+        {
+            button7.FlatAppearance.BorderSize = 0;
+            button7.FlatStyle = FlatStyle.Flat;
+        }
         #endregion
 
         #region -- Кнопка моды --
@@ -556,6 +633,17 @@ namespace Launcher_v2
                 }
             }
         }
+        private void button6_MouseEnter(object sender, EventArgs e)
+        {
+            button6.FlatAppearance.BorderSize = 1;
+            button6.FlatStyle = FlatStyle.Popup;
+        }
+
+        private void button6_MouseLeave(object sender, EventArgs e)
+        {
+            button6.FlatAppearance.BorderSize = 0;
+            button6.FlatStyle = FlatStyle.Flat;
+        }
         #endregion
 
         #region -- Кнопка ремонта --
@@ -572,6 +660,17 @@ namespace Launcher_v2
             {
                 //
             }
+        }
+        private void button4_MouseEnter(object sender, EventArgs e)
+        {
+            button4.FlatAppearance.BorderSize = 1;
+            button4.FlatStyle = FlatStyle.Popup;
+        }
+
+        private void button4_MouseLeave(object sender, EventArgs e)
+        {
+            button4.FlatAppearance.BorderSize = 0;
+            button4.FlatStyle = FlatStyle.Flat;
         }
         #endregion
 
@@ -619,6 +718,17 @@ namespace Launcher_v2
                 }
             }
             */
+        }
+        private void button10_MouseEnter(object sender, EventArgs e)
+        {
+            button10.FlatAppearance.BorderSize = 1;
+            button10.FlatStyle = FlatStyle.Popup;
+        }
+
+        private void button10_MouseLeave(object sender, EventArgs e)
+        {
+            button10.FlatAppearance.BorderSize = 0;
+            button10.FlatStyle = FlatStyle.Flat;
         }
         #endregion
 
@@ -680,6 +790,17 @@ namespace Launcher_v2
                 //
             }
         }
+        private void button9_MouseEnter(object sender, EventArgs e)
+        {
+            button9.FlatAppearance.BorderSize = 1;
+            button9.FlatStyle = FlatStyle.Popup;
+        }
+
+        private void button9_MouseLeave(object sender, EventArgs e)
+        {
+            button9.FlatAppearance.BorderSize = 0;
+            button9.FlatStyle = FlatStyle.Flat;
+        }
         #endregion
 
         #region -- Кнопка Anti-Grief --
@@ -694,8 +815,8 @@ namespace Launcher_v2
                 }
                 else
                 {
-                    string dirName1 = (Application.StartupPath + "/Mindustry//A-G//Mindustry.exe");
-                    string dirName = (Application.StartupPath + "/Mindustry//A-G//");
+                    string dirName1 = (Application.StartupPath + "/Mindustry/A-G//Mindustry.exe");
+                    string dirName = (Application.StartupPath + "/Mindustry/A-G//");
                     if (Directory.Exists(dirName) && File.Exists(dirName1) == true)
                     {
                         Process.Start(Application.StartupPath + "//Mindustry//A-G//Mindustry.exe");
@@ -706,20 +827,10 @@ namespace Launcher_v2
                         DialogResult dialogResult1 = MessageBox.Show("Лаунчер не может найти каталог клиента \nХотите ли вы запустить средство устранения ошибок?", "Внимание!", MessageBoxButtons.YesNo);
                         if (dialogResult1 == DialogResult.Yes)
                         {
-
-                            if (!File.Exists("Updater.exe"))
-                            {
-                                MessageBox.Show("Лаунчер не может найти средство устранения ошибок\nПереустановите программу.", "Внимание!");
-                                Application.Exit();
-                            }
-                            else
-                            {
-                                File.Delete(Application.StartupPath + "/updater");
-                                Process.Start(Application.StartupPath + "/Updater.exe");
-                                Application.Exit();
-                            }
+                                File.Delete(Application.StartupPath + "/version");
+                                Application.Restart();
                         }
-                        else if (dialogResult == DialogResult.No)
+                        else
                         {
                             //
                         }
@@ -730,6 +841,17 @@ namespace Launcher_v2
             {
                 //
             }
+        }
+        private void button11_MouseEnter(object sender, EventArgs e)
+        {
+            button11.FlatAppearance.BorderSize = 1;
+            button11.FlatStyle = FlatStyle.Popup;
+        }
+
+        private void button11_MouseLeave(object sender, EventArgs e)
+        {
+            button11.FlatAppearance.BorderSize = 0;
+            button11.FlatStyle = FlatStyle.Flat;
         }
         #endregion
 
@@ -750,6 +872,5 @@ namespace Launcher_v2
             control.Region = new Region(path);
         }
         #endregion
-
     }
 }
